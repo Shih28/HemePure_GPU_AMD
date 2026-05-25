@@ -1,0 +1,143 @@
+<?xml version="1.0"?>
+<hemelbsettings version="3">
+  <simulation>
+    <step_length units="s" value="5.1041666666666656e-05"/>
+    <steps units="lattice" value="100000"/>
+    <stresstype value="1"/>
+    <!-- 🌟 網格大小改為 6.4 微米 -->
+    <voxel_size units="m" value="6.4e-06"/>
+    <origin units="m" value="(0.0,0.0,0.0)"/>
+  </simulation>
+  
+  <geometry>
+    <!-- ⚠️ 請確認這裡的名字是您生成的 6.4um 網格檔名 -->
+    <datafile path="CircleofWillis_clipped_6.4um.gmy"/>
+  </geometry>
+  
+  <initialconditions>
+    <pressure>
+      <uniform units="mmHg" value="0.0"/>
+    </pressure>
+  </initialconditions>
+  
+  <monitoring>
+    <incompressibility/>
+  </monitoring>
+
+  <inlets>
+    <inlet>
+      <!-- index value=0-->
+      <condition type="velocity" subtype="file">
+        <path value="Flow_BA_100.txt"/>
+        <radius value="0.000139002" units="m"/>
+      </condition>
+      <normal units="dimensionless" value="(0.234041,-0.821727,0.519606)"/>
+      <position units="lattice" value="(24.1488,631.812,136.095)"/>
+    </inlet>
+    <inlet>
+      <!-- index value=1-->
+      <condition type="velocity" subtype="file">
+        <path value="Flow_LICA_100.txt"/>
+        <radius value="9.81988e-05" units="m"/>
+      </condition>
+      <normal units="dimensionless" value="(0.632397,0.307153,-0.711148)"/>
+      <position units="lattice" value="(128.61,137.623,246.255)"/>
+    </inlet>
+    <inlet>
+      <!-- index value=2-->
+      <condition type="velocity" subtype="file">
+        <path value="Flow_RICA_100.txt"/>
+        <radius value="0.000226769" units="m"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.028827,0.0786889,0.996482)"/>
+      <position units="lattice" value="(303.628,428.7,12.477)"/>
+    </inlet>
+  </inlets>
+  
+  <outlets>
+    <outlet>
+      <!-- index value=0 -->
+      <condition subtype="cosine" type="pressure">
+        <amplitude units="mmHg" value="0.0"/>
+        <mean units="mmHg" value="0.0"/>
+        <phase units="rad" value="0.0"/>
+        <period units="s" value="1"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.0276837,0.0775829,0.996601)"/>
+      <position units="lattice" value="(430.182,267.47,28.8576)"/>
+    </outlet>
+    <outlet>
+      <!-- index value=1 -->
+      <condition subtype="cosine" type="pressure">
+        <amplitude units="mmHg" value="0.0"/>
+        <mean units="mmHg" value="0.0"/>
+        <phase units="rad" value="0.0"/>
+        <period units="s" value="1"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.0189285,-0.995848,-0.0890407)"/>
+      <position units="lattice" value="(441.851,870.659,560.277)"/>
+    </outlet>
+    <outlet>
+      <!-- index value=2 -->
+      <condition subtype="cosine" type="pressure">
+        <amplitude units="mmHg" value="0.0"/>
+        <mean units="mmHg" value="0.0"/>
+        <phase units="rad" value="0.0"/>
+        <period units="s" value="1"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.0175645,-0.996027,-0.0873078)"/>
+      <position units="lattice" value="(478.023,866.873,595.247)"/>
+    </outlet>
+    <outlet>
+      <!-- index value=3 -->
+      <condition subtype="cosine" type="pressure">
+        <amplitude units="mmHg" value="0.0"/>
+        <mean units="mmHg" value="0.0"/>
+        <phase units="rad" value="0.0"/>
+        <period units="s" value="1"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.0273122,0.077712,0.996602)"/>
+      <position units="lattice" value="(665.02,412.237,24.1254)"/>
+    </outlet>
+    <outlet>
+      <!-- index value=4 -->
+      <condition subtype="cosine" type="pressure">
+        <amplitude units="mmHg" value="0.0"/>
+        <mean units="mmHg" value="0.0"/>
+        <phase units="rad" value="0.0"/>
+        <period units="s" value="1"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.301579,0.786109,-0.539521)"/>
+      <position units="lattice" value="(790.969,13.211,206.175)"/>
+    </outlet>
+    <outlet>
+      <!-- index value=5 -->
+      <condition subtype="cosine" type="pressure">
+        <amplitude units="mmHg" value="0.0"/>
+        <mean units="mmHg" value="0.0"/>
+        <phase units="rad" value="0.0"/>
+        <period units="s" value="1"/>
+      </condition>
+      <normal units="dimensionless" value="(-0.966391,-0.0645532,-0.248842)"/>
+      <position units="lattice" value="(1097.8,624.582,211.173)"/>
+    </outlet>
+  </outlets>
+
+  <properties>
+    <propertyoutput file="inlet.dat" period="10000">
+      <geometry type="inlet" />
+      <field type="velocity" />
+      <field type="pressure" />
+    </propertyoutput>
+    <propertyoutput file="outlet.dat" period="10000">
+      <geometry type="outlet" />
+      <field type="velocity" />
+      <field type="pressure" />
+    </propertyoutput>
+    <propertyoutput file="whole.dat" period="10000">
+      <geometry type="whole" />
+      <field type="velocity" />
+      <field type="pressure" />
+    </propertyoutput>
+  </properties>
+</hemelbsettings>

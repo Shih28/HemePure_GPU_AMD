@@ -1,0 +1,62 @@
+# ============================================================================
+#  HemePure_GPU_AMD .gitignore
+# ============================================================================
+
+# ---- Build directories (CMake) ---------------------------------------------
+# Matches src/build, dep/build, and any nested build dir.
+build/
+install/
+
+# ---- Dependency install / sources ------------------------------------------
+dep/install/
+# Large source tarballs (re-downloaded by the dependency build when missing).
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tgz
+
+# ---- Compiled objects / libraries / executables ----------------------------
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.lo
+*.la
+*.dylib
+# The built HemeLB binaries.
+hemepure_gpu
+io_tool
+
+# ---- Large case geometry & generated data ----------------------------------
+# Geometry files and generated velocity-weight files are big binary data;
+# keep the small input XMLs and source flow profiles instead.
+*.gmy
+*.sgmy
+*.weights.txt
+
+# ---- Simulation output / results -------------------------------------------
+results/
+results_*/
+*.xtr
+*.vtu
+*.vtp
+*.pvtu
+
+# ---- Job scheduler output --------------------------------------------------
+slurm-*.out
+*.o[0-9]*
+*.e[0-9]*
+
+# ---- Editor / temp files ---------------------------------------------------
+*~
+\#*\#
+.\#*
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# ---- OS cruft --------------------------------------------------------------
+.DS_Store
+Thumbs.db
