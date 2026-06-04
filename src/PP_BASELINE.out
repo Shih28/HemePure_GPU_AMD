@@ -1,0 +1,591 @@
+============================================================
+  case  : Aneurysm  (variant PP)
+  exe   : /home/hpc-i/student10/HemePure_GPU_AMD/src/build/hemepure_gpu_PP
+  input : /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/input_PP.xml
+  output: /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/results_Aneurysm_56598
+  ntasks: 2   gpus: 1
+  node  : GPU4
+============================================================
+[1780555125.999188] [GPU4:4061437:0]          parser.c:2363 UCX  WARN  unused environment variable: UCX_CUDA_IPC_ENABLE_MNNVL
+[1780555125.999188] [GPU4:4061437:0]          parser.c:2363 UCX  WARN  (set UCX_WARN_UNUSED_ENV_VARS=n to suppress this warning)
+[1780555125.999191] [GPU4:4061436:0]          parser.c:2363 UCX  WARN  unused environment variable: UCX_CUDA_IPC_ENABLE_MNNVL
+[1780555125.999191] [GPU4:4061436:0]          parser.c:2363 UCX  WARN  (set UCX_WARN_UNUSED_ENV_VARS=n to suppress this warning)
+[Rank 0000000, 5.491190e-04 s, 00000000084576 kB] :: INITIALISE
+[Rank 0000000, 6.115830e-04 s, 00000000084604 kB] :: ----------
+[Rank 0000000, 6.452440e-04 s, 00000000084604 kB] :: --> loading input and decomposing geometry
+[Rank 0000000, 3.799855e-03 s, 00000000086808 kB] :: ----> opened data file /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/reference_BA_clipped.gmy
+[Rank 0000000, 3.860807e-03 s, 00000000086816 kB] :: ----> reading preamble
+[Rank 0000000, 3.913947e-03 s, 00000000086908 kB] :: ----> reading header (start)
+[Rank 0000000, 2.440028e-01 s, 00000000112224 kB] :: ----> reading header (end)
+[Rank 0000000, 5.066187e-01 s, 00000000112160 kB] :: ----> non-empty blocks: 112341
+[Rank 0000000, 5.066801e-01 s, 00000000112160 kB] ::           total blocks: 4623360
+[Rank 0000000, 5.076468e-01 s, 00000000112160 kB] ::                  ratio: 0.024299
+[Rank 0000000, 5.076868e-01 s, 00000000112184 kB] ::                  sites: 49484674
+[Rank 0000000, 5.077196e-01 s, 00000000112184 kB] :: ----> blockInformation.size(): 112341
+[Rank 0000000, 5.077519e-01 s, 00000000112184 kB] ::  fluidSitesOnEachBlock.size(): 0
+[Rank 0000000, 5.077865e-01 s, 00000000112184 kB] ::           blockWeights.size(): 0
+[Rank 0000000, 5.078247e-01 s, 00000000112184 kB] :: ----> is blockInformation.size() == nonEmptyBlocks? yes
+[Rank 0000000, 5.078590e-01 s, 00000000112184 kB] :: ----> not optimising decomposition
+[Rank 0000000, 5.091520e-01 s, 00000000112236 kB] :: ----> basic decomposition (start)
+[Rank 0000001, 5.687294e-01 s, 00000000049152 kB] :: ----> load distribution: 0.000000
+[Rank 0000000, 5.703436e-01 s, 00000000120420 kB] :: ----> basic decomposition (end)
+[Rank 0000000, 5.703982e-01 s, 00000000120420 kB] :: ----> read blocks (start)
+[Rank 0000000, 1.896679e+02 s, 00000013730104 kB] :: ----> read blocks (end)
+[Rank 0000000, 2.041449e+02 s, 00000013721984 kB] :: --> lattice data
+[Rank 0000000, 2.041558e+02 s, 00000013722024 kB] :: ----> LatticeDataInitializer: sorting Nonempty blocks
+[Rank 0000000, 2.247718e+02 s, 00000013722052 kB] :: ----> LatticeDataInitializer: setting basic Details
+[Rank 0000000, 2.247719e+02 s, 00000013722052 kB] :: ----> LatticeDataInitializer: processing read sites
+[Rank 0000000, 6.340087e+02 s, 00000040287352 kB] :: ----> LatticeDataInitializer: Collect Fluid Distributions
+[Rank 0000000, 6.340089e+02 s, 00000040287352 kB] :: ----> gathering lattice information (start)
+[Rank 0000000, 6.340091e+02 s, 00000040287352 kB] :: ----> gathering lattice information (end)
+[Rank 0000000, 6.340092e+02 s, 00000040287352 kB] :: ----> collecting site extrema (start)
+[Rank 0000000, 6.449772e+02 s, 00000040287352 kB] :: ----> collecting site extrema (end)
+[Rank 0000000, 6.449773e+02 s, 00000040287352 kB] :: ----> LatticeDataInitializer: Initialize Neighbor lookups
+[Rank 0000000, 6.449773e+02 s, 00000040287356 kB] :: ----> initializing neighbour lookups (start)
+[Rank 0000000, 6.449774e+02 s, 00000040287356 kB] :: ----> initializing neighbour lookups: NLookup
+[Rank 0000000, 1.174583e+03 s, 00000047632740 kB] :: ----> initializing neighbour lookups: Point to Point comms
+[Rank 0000000, 1.174583e+03 s, 00000047632740 kB] :: ----> initializing neighbour lookups: Receive Lookup
+[Rank 0000000, 1.174583e+03 s, 00000047632740 kB] :: ----> initializing neighbour lookups (end)
+[Rank 0000000, 1.174583e+03 s, 00000047632740 kB] :: ----> LatticeDataInitializer: done
+[Rank 0000000, 1.174583e+03 s, 00000047632740 kB] :: --> neighbouring data manager
+[Rank 0000000, 1.174583e+03 s, 00000047632756 kB] :: --> lattice-Boltzmann model
+Rank 0: Detected 1 GPU device(s)
+===============================================
+Device properties: 
+Device name:  AMDGCN GFX2079422448
+Compute Capability: 12.0
+
+Total Global Mem:    31.9GB
+Number of Streaming Multiprocessors:  32
+Shared Mem Per SM:   64KB
+Max Number of Threads per Block:  1024
+Max Number of Blocks allowed in x-dir:  2147483647
+Max Number of Blocks allowed in y-dir:  65536
+Warp Size:  32
+===============================================
+
+================================================================
+Rank: 1, n_Inlets_Inner: 1, n_InletsWall_Inner: 1, n_Inlets_Edge: 0, n_InletsWall_Edge: 0 
+Rank: 1, n_Outlets_Inner: 2, n_OutletsWall_Inner: 2, n_Outlets_Edge: 0, n_OutletsWall_Edge: 0 
+================================================================
+Relaxation Time = 0.80720
+
+[Rank 0000000, 1.439699e+03 s, 00000105357976 kB] :: -------------------
+[Rank 0000000, 1.439699e+03 s, 00000105357976 kB] :: INITIALISE FINISHED
+[Rank 0000000, 1.449290e+03 s, 00000105357976 kB] :: SIMULATION STARTING
+[Rank 0000000, 1.449290e+03 s, 00000105357976 kB] :: -------------------
+[Rank 0000000, 1.471827e+03 s, 00000105392596 kB] :: time step 0000200 :: write_image_to_disk 0
+[Rank 0000000, 1.493880e+03 s, 00000105393444 kB] :: time step 0000400 :: write_image_to_disk 0
+[Rank 0000000, 1.516086e+03 s, 00000105393908 kB] :: time step 0000600 :: write_image_to_disk 0
+[Rank 0000000, 1.538389e+03 s, 00000105393912 kB] :: time step 0000800 :: write_image_to_disk 0
+[Rank 0000000, 1.560729e+03 s, 00000105393916 kB] :: time step 0001000 :: write_image_to_disk 0
+[Rank 0000000, 1.588955e+03 s, 00000106940320 kB] :: time step 0001200 :: write_image_to_disk 0
+[Rank 0000000, 1.611379e+03 s, 00000106940320 kB] :: time step 0001400 :: write_image_to_disk 0
+[Rank 0000000, 1.633926e+03 s, 00000106940320 kB] :: time step 0001600 :: write_image_to_disk 0
+[Rank 0000000, 1.656560e+03 s, 00000106940320 kB] :: time step 0001800 :: write_image_to_disk 0
+[Rank 0000000, 1.679222e+03 s, 00000106940320 kB] :: time step 0002000 :: write_image_to_disk 0
+[Rank 0000000, 1.706721e+03 s, 00000106940320 kB] :: time step 0002200 :: write_image_to_disk 0
+[Rank 0000000, 1.729374e+03 s, 00000106940320 kB] :: time step 0002400 :: write_image_to_disk 0
+[Rank 0000000, 1.752062e+03 s, 00000106940320 kB] :: time step 0002600 :: write_image_to_disk 0
+[Rank 0000000, 1.774744e+03 s, 00000106940320 kB] :: time step 0002800 :: write_image_to_disk 0
+[Rank 0000000, 1.797425e+03 s, 00000106940320 kB] :: time step 0003000 :: write_image_to_disk 0
+[Rank 0000000, 1.824965e+03 s, 00000106940320 kB] :: time step 0003200 :: write_image_to_disk 0
+[Rank 0000000, 1.847637e+03 s, 00000106940320 kB] :: time step 0003400 :: write_image_to_disk 0
+[Rank 0000000, 1.870332e+03 s, 00000106940320 kB] :: time step 0003600 :: write_image_to_disk 0
+[Rank 0000000, 1.893027e+03 s, 00000106940320 kB] :: time step 0003800 :: write_image_to_disk 0
+[Rank 0000000, 1.915720e+03 s, 00000106940320 kB] :: time step 0004000 :: write_image_to_disk 0
+[Rank 0000000, 1.943255e+03 s, 00000106940320 kB] :: time step 0004200 :: write_image_to_disk 0
+[Rank 0000000, 1.965933e+03 s, 00000106940320 kB] :: time step 0004400 :: write_image_to_disk 0
+[Rank 0000000, 1.988632e+03 s, 00000106940320 kB] :: time step 0004600 :: write_image_to_disk 0
+[Rank 0000000, 2.011329e+03 s, 00000106940320 kB] :: time step 0004800 :: write_image_to_disk 0
+[Rank 0000000, 2.034026e+03 s, 00000106940320 kB] :: time step 0005000 :: write_image_to_disk 1
+[Rank 0000000, 2.150855e+03 s, 00000106940752 kB] :: time step 0005200 :: write_image_to_disk 0
+[Rank 0000000, 2.173449e+03 s, 00000106940752 kB] :: time step 0005400 :: write_image_to_disk 0
+[Rank 0000000, 2.196132e+03 s, 00000106940752 kB] :: time step 0005600 :: write_image_to_disk 0
+[Rank 0000000, 2.218830e+03 s, 00000106940752 kB] :: time step 0005800 :: write_image_to_disk 0
+[Rank 0000000, 2.241537e+03 s, 00000106940752 kB] :: time step 0006000 :: write_image_to_disk 0
+[Rank 0000000, 2.269236e+03 s, 00000106940752 kB] :: time step 0006200 :: write_image_to_disk 0
+[Rank 0000000, 2.291941e+03 s, 00000106940752 kB] :: time step 0006400 :: write_image_to_disk 0
+[Rank 0000000, 2.314651e+03 s, 00000106940752 kB] :: time step 0006600 :: write_image_to_disk 0
+[Rank 0000000, 2.337351e+03 s, 00000106940752 kB] :: time step 0006800 :: write_image_to_disk 0
+[Rank 0000000, 2.360064e+03 s, 00000106940752 kB] :: time step 0007000 :: write_image_to_disk 0
+[Rank 0000000, 2.387744e+03 s, 00000106940752 kB] :: time step 0007200 :: write_image_to_disk 0
+[Rank 0000000, 2.410442e+03 s, 00000106940752 kB] :: time step 0007400 :: write_image_to_disk 0
+[Rank 0000000, 2.433152e+03 s, 00000106940752 kB] :: time step 0007600 :: write_image_to_disk 0
+[Rank 0000000, 2.455853e+03 s, 00000106940752 kB] :: time step 0007800 :: write_image_to_disk 0
+[Rank 0000000, 2.478555e+03 s, 00000106940752 kB] :: time step 0008000 :: write_image_to_disk 0
+[Rank 0000000, 2.506245e+03 s, 00000106940752 kB] :: time step 0008200 :: write_image_to_disk 0
+[Rank 0000000, 2.528947e+03 s, 00000106940752 kB] :: time step 0008400 :: write_image_to_disk 0
+[Rank 0000000, 2.551655e+03 s, 00000106940752 kB] :: time step 0008600 :: write_image_to_disk 0
+[Rank 0000000, 2.574355e+03 s, 00000106940752 kB] :: time step 0008800 :: write_image_to_disk 0
+[Rank 0000000, 2.597066e+03 s, 00000106940752 kB] :: time step 0009000 :: write_image_to_disk 0
+[Rank 0000000, 2.624797e+03 s, 00000106940752 kB] :: time step 0009200 :: write_image_to_disk 0
+[Rank 0000000, 2.647483e+03 s, 00000106940752 kB] :: time step 0009400 :: write_image_to_disk 0
+[Rank 0000000, 2.670194e+03 s, 00000106940752 kB] :: time step 0009600 :: write_image_to_disk 0
+[Rank 0000000, 2.692894e+03 s, 00000106940752 kB] :: time step 0009800 :: write_image_to_disk 0
+[Rank 0000000, 2.715606e+03 s, 00000106940752 kB] :: time step 0010000 :: write_image_to_disk 1
+[Rank 0000000, 2.898287e+03 s, 00000106940896 kB] :: time step 0010200 :: write_image_to_disk 0
+[Rank 0000000, 2.920706e+03 s, 00000106940896 kB] :: time step 0010400 :: write_image_to_disk 0
+[Rank 0000000, 2.943400e+03 s, 00000106940896 kB] :: time step 0010600 :: write_image_to_disk 0
+[Rank 0000000, 2.966106e+03 s, 00000106940896 kB] :: time step 0010800 :: write_image_to_disk 0
+[Rank 0000000, 2.988813e+03 s, 00000106940896 kB] :: time step 0011000 :: write_image_to_disk 0
+[Rank 0000000, 3.016538e+03 s, 00000106940896 kB] :: time step 0011200 :: write_image_to_disk 0
+[Rank 0000000, 3.039235e+03 s, 00000106940896 kB] :: time step 0011400 :: write_image_to_disk 0
+[Rank 0000000, 3.061949e+03 s, 00000106940896 kB] :: time step 0011600 :: write_image_to_disk 0
+[Rank 0000000, 3.084658e+03 s, 00000106940896 kB] :: time step 0011800 :: write_image_to_disk 0
+[Rank 0000000, 3.107373e+03 s, 00000106940896 kB] :: time step 0012000 :: write_image_to_disk 0
+[Rank 0000000, 3.135169e+03 s, 00000106940896 kB] :: time step 0012200 :: write_image_to_disk 0
+[Rank 0000000, 3.157871e+03 s, 00000106940896 kB] :: time step 0012400 :: write_image_to_disk 0
+[Rank 0000000, 3.180585e+03 s, 00000106940896 kB] :: time step 0012600 :: write_image_to_disk 0
+[Rank 0000000, 3.203288e+03 s, 00000106940896 kB] :: time step 0012800 :: write_image_to_disk 0
+[Rank 0000000, 3.225998e+03 s, 00000106940896 kB] :: time step 0013000 :: write_image_to_disk 0
+[Rank 0000000, 3.253728e+03 s, 00000106940896 kB] :: time step 0013200 :: write_image_to_disk 0
+[Rank 0000000, 3.276423e+03 s, 00000106940896 kB] :: time step 0013400 :: write_image_to_disk 0
+[Rank 0000000, 3.299134e+03 s, 00000106940896 kB] :: time step 0013600 :: write_image_to_disk 0
+[Rank 0000000, 3.321831e+03 s, 00000106940896 kB] :: time step 0013800 :: write_image_to_disk 0
+[Rank 0000000, 3.344539e+03 s, 00000106940896 kB] :: time step 0014000 :: write_image_to_disk 0
+[Rank 0000000, 3.372264e+03 s, 00000106940896 kB] :: time step 0014200 :: write_image_to_disk 0
+[Rank 0000000, 3.394951e+03 s, 00000106940896 kB] :: time step 0014400 :: write_image_to_disk 0
+[Rank 0000000, 3.417662e+03 s, 00000106940896 kB] :: time step 0014600 :: write_image_to_disk 0
+[Rank 0000000, 3.440367e+03 s, 00000106940896 kB] :: time step 0014800 :: write_image_to_disk 0
+[Rank 0000000, 3.463081e+03 s, 00000106940896 kB] :: time step 0015000 :: write_image_to_disk 1
+[Rank 0000000, 3.581312e+03 s, 00000106940896 kB] :: time step 0015200 :: write_image_to_disk 0
+[Rank 0000000, 3.603909e+03 s, 00000106940896 kB] :: time step 0015400 :: write_image_to_disk 0
+[Rank 0000000, 3.626596e+03 s, 00000106940896 kB] :: time step 0015600 :: write_image_to_disk 0
+[Rank 0000000, 3.649310e+03 s, 00000106940896 kB] :: time step 0015800 :: write_image_to_disk 0
+[Rank 0000000, 3.672020e+03 s, 00000106940896 kB] :: time step 0016000 :: write_image_to_disk 0
+[Rank 0000000, 3.699721e+03 s, 00000106940896 kB] :: time step 0016200 :: write_image_to_disk 0
+[Rank 0000000, 3.722411e+03 s, 00000106940896 kB] :: time step 0016400 :: write_image_to_disk 0
+[Rank 0000000, 3.745124e+03 s, 00000106940896 kB] :: time step 0016600 :: write_image_to_disk 0
+[Rank 0000000, 3.767842e+03 s, 00000106940896 kB] :: time step 0016800 :: write_image_to_disk 0
+[Rank 0000000, 3.790559e+03 s, 00000106940896 kB] :: time step 0017000 :: write_image_to_disk 0
+[Rank 0000000, 3.818337e+03 s, 00000106940896 kB] :: time step 0017200 :: write_image_to_disk 0
+[Rank 0000000, 3.841044e+03 s, 00000106940896 kB] :: time step 0017400 :: write_image_to_disk 0
+[Rank 0000000, 3.863771e+03 s, 00000106940896 kB] :: time step 0017600 :: write_image_to_disk 0
+[Rank 0000000, 3.886489e+03 s, 00000106940896 kB] :: time step 0017800 :: write_image_to_disk 0
+[Rank 0000000, 3.909203e+03 s, 00000106940896 kB] :: time step 0018000 :: write_image_to_disk 0
+[Rank 0000000, 3.936979e+03 s, 00000106940896 kB] :: time step 0018200 :: write_image_to_disk 0
+[Rank 0000000, 3.959671e+03 s, 00000106940896 kB] :: time step 0018400 :: write_image_to_disk 0
+[Rank 0000000, 3.982382e+03 s, 00000106940896 kB] :: time step 0018600 :: write_image_to_disk 0
+[Rank 0000000, 4.005094e+03 s, 00000106940896 kB] :: time step 0018800 :: write_image_to_disk 0
+[Rank 0000000, 4.027807e+03 s, 00000106940896 kB] :: time step 0019000 :: write_image_to_disk 0
+[Rank 0000000, 4.055540e+03 s, 00000106940896 kB] :: time step 0019200 :: write_image_to_disk 0
+[Rank 0000000, 4.078235e+03 s, 00000106940896 kB] :: time step 0019400 :: write_image_to_disk 0
+[Rank 0000000, 4.100947e+03 s, 00000106940896 kB] :: time step 0019600 :: write_image_to_disk 0
+[Rank 0000000, 4.123655e+03 s, 00000106940896 kB] :: time step 0019800 :: write_image_to_disk 0
+[Rank 0000000, 4.146369e+03 s, 00000106940896 kB] :: time step 0020000 :: write_image_to_disk 1
+[Rank 0000000, 4.330043e+03 s, 00000106940896 kB] :: time step 0020200 :: write_image_to_disk 0
+[Rank 0000000, 4.352691e+03 s, 00000106940896 kB] :: time step 0020400 :: write_image_to_disk 0
+[Rank 0000000, 4.375392e+03 s, 00000106940896 kB] :: time step 0020600 :: write_image_to_disk 0
+[Rank 0000000, 4.398100e+03 s, 00000106940896 kB] :: time step 0020800 :: write_image_to_disk 0
+[Rank 0000000, 4.420807e+03 s, 00000106940896 kB] :: time step 0021000 :: write_image_to_disk 0
+[Rank 0000000, 4.448616e+03 s, 00000106940896 kB] :: time step 0021200 :: write_image_to_disk 0
+[Rank 0000000, 4.471306e+03 s, 00000106940896 kB] :: time step 0021400 :: write_image_to_disk 0
+[Rank 0000000, 4.494019e+03 s, 00000106940896 kB] :: time step 0021600 :: write_image_to_disk 0
+[Rank 0000000, 4.516726e+03 s, 00000106940896 kB] :: time step 0021800 :: write_image_to_disk 0
+[Rank 0000000, 4.539430e+03 s, 00000106940896 kB] :: time step 0022000 :: write_image_to_disk 0
+[Rank 0000000, 4.567199e+03 s, 00000106940896 kB] :: time step 0022200 :: write_image_to_disk 0
+[Rank 0000000, 4.589893e+03 s, 00000106940896 kB] :: time step 0022400 :: write_image_to_disk 0
+[Rank 0000000, 4.612605e+03 s, 00000106940896 kB] :: time step 0022600 :: write_image_to_disk 0
+[Rank 0000000, 4.635314e+03 s, 00000106940896 kB] :: time step 0022800 :: write_image_to_disk 0
+[Rank 0000000, 4.658020e+03 s, 00000106940896 kB] :: time step 0023000 :: write_image_to_disk 0
+[Rank 0000000, 4.685770e+03 s, 00000106940896 kB] :: time step 0023200 :: write_image_to_disk 0
+[Rank 0000000, 4.708463e+03 s, 00000106940896 kB] :: time step 0023400 :: write_image_to_disk 0
+[Rank 0000000, 4.731176e+03 s, 00000106940896 kB] :: time step 0023600 :: write_image_to_disk 0
+[Rank 0000000, 4.753889e+03 s, 00000106940896 kB] :: time step 0023800 :: write_image_to_disk 0
+[Rank 0000000, 4.776597e+03 s, 00000106940896 kB] :: time step 0024000 :: write_image_to_disk 0
+[Rank 0000000, 4.804399e+03 s, 00000106940896 kB] :: time step 0024200 :: write_image_to_disk 0
+[Rank 0000000, 4.827093e+03 s, 00000106940896 kB] :: time step 0024400 :: write_image_to_disk 0
+[Rank 0000000, 4.849800e+03 s, 00000106940896 kB] :: time step 0024600 :: write_image_to_disk 0
+[Rank 0000000, 4.872503e+03 s, 00000106940896 kB] :: time step 0024800 :: write_image_to_disk 0
+[Rank 0000000, 4.895195e+03 s, 00000106940896 kB] :: time step 0025000 :: write_image_to_disk 1
+[Rank 0000000, 5.012741e+03 s, 00000106940896 kB] :: time step 0025200 :: write_image_to_disk 0
+[Rank 0000000, 5.035325e+03 s, 00000106940896 kB] :: time step 0025400 :: write_image_to_disk 0
+[Rank 0000000, 5.058010e+03 s, 00000106940896 kB] :: time step 0025600 :: write_image_to_disk 0
+[Rank 0000000, 5.080715e+03 s, 00000106940896 kB] :: time step 0025800 :: write_image_to_disk 0
+[Rank 0000000, 5.103420e+03 s, 00000106940896 kB] :: time step 0026000 :: write_image_to_disk 0
+[Rank 0000000, 5.131148e+03 s, 00000106940896 kB] :: time step 0026200 :: write_image_to_disk 0
+[Rank 0000000, 5.153812e+03 s, 00000106940896 kB] :: time step 0026400 :: write_image_to_disk 0
+[Rank 0000000, 5.176520e+03 s, 00000106940896 kB] :: time step 0026600 :: write_image_to_disk 0
+[Rank 0000000, 5.199218e+03 s, 00000106940896 kB] :: time step 0026800 :: write_image_to_disk 0
+[Rank 0000000, 5.221912e+03 s, 00000106940896 kB] :: time step 0027000 :: write_image_to_disk 0
+[Rank 0000000, 5.249678e+03 s, 00000106940896 kB] :: time step 0027200 :: write_image_to_disk 0
+[Rank 0000000, 5.272348e+03 s, 00000106940896 kB] :: time step 0027400 :: write_image_to_disk 0
+[Rank 0000000, 5.295052e+03 s, 00000106940896 kB] :: time step 0027600 :: write_image_to_disk 0
+[Rank 0000000, 5.317753e+03 s, 00000106940896 kB] :: time step 0027800 :: write_image_to_disk 0
+[Rank 0000000, 5.340452e+03 s, 00000106940896 kB] :: time step 0028000 :: write_image_to_disk 0
+[Rank 0000000, 5.368270e+03 s, 00000106940896 kB] :: time step 0028200 :: write_image_to_disk 0
+[Rank 0000000, 5.390944e+03 s, 00000106940896 kB] :: time step 0028400 :: write_image_to_disk 0
+[Rank 0000000, 5.413644e+03 s, 00000106940896 kB] :: time step 0028600 :: write_image_to_disk 0
+[Rank 0000000, 5.436338e+03 s, 00000106940896 kB] :: time step 0028800 :: write_image_to_disk 0
+[Rank 0000000, 5.459041e+03 s, 00000106940896 kB] :: time step 0029000 :: write_image_to_disk 0
+[Rank 0000000, 5.486756e+03 s, 00000106940896 kB] :: time step 0029200 :: write_image_to_disk 0
+[Rank 0000000, 5.509439e+03 s, 00000106940896 kB] :: time step 0029400 :: write_image_to_disk 0
+[Rank 0000000, 5.532151e+03 s, 00000106940896 kB] :: time step 0029600 :: write_image_to_disk 0
+[Rank 0000000, 5.554856e+03 s, 00000106940896 kB] :: time step 0029800 :: write_image_to_disk 0
+[Rank 0000000, 5.577557e+03 s, 00000106940896 kB] :: time step 0030000 :: write_image_to_disk 1
+[Rank 0000000, 5.760727e+03 s, 00000106940896 kB] :: time step 0030200 :: write_image_to_disk 0
+[Rank 0000000, 5.783374e+03 s, 00000106940896 kB] :: time step 0030400 :: write_image_to_disk 0
+[Rank 0000000, 5.806065e+03 s, 00000106940896 kB] :: time step 0030600 :: write_image_to_disk 0
+[Rank 0000000, 5.828776e+03 s, 00000106940896 kB] :: time step 0030800 :: write_image_to_disk 0
+[Rank 0000000, 5.851481e+03 s, 00000106940896 kB] :: time step 0031000 :: write_image_to_disk 0
+[Rank 0000000, 5.879186e+03 s, 00000106940896 kB] :: time step 0031200 :: write_image_to_disk 0
+[Rank 0000000, 5.901870e+03 s, 00000106940896 kB] :: time step 0031400 :: write_image_to_disk 0
+[Rank 0000000, 5.924583e+03 s, 00000106940896 kB] :: time step 0031600 :: write_image_to_disk 0
+[Rank 0000000, 5.947291e+03 s, 00000106940896 kB] :: time step 0031800 :: write_image_to_disk 0
+[Rank 0000000, 5.969992e+03 s, 00000106940896 kB] :: time step 0032000 :: write_image_to_disk 0
+[Rank 0000000, 5.997697e+03 s, 00000106940896 kB] :: time step 0032200 :: write_image_to_disk 0
+[Rank 0000000, 6.020389e+03 s, 00000106940896 kB] :: time step 0032400 :: write_image_to_disk 0
+[Rank 0000000, 6.043105e+03 s, 00000106940896 kB] :: time step 0032600 :: write_image_to_disk 0
+[Rank 0000000, 6.065814e+03 s, 00000106940896 kB] :: time step 0032800 :: write_image_to_disk 0
+[Rank 0000000, 6.088523e+03 s, 00000106940896 kB] :: time step 0033000 :: write_image_to_disk 0
+[Rank 0000000, 6.116297e+03 s, 00000106940896 kB] :: time step 0033200 :: write_image_to_disk 0
+[Rank 0000000, 6.138996e+03 s, 00000106940896 kB] :: time step 0033400 :: write_image_to_disk 0
+[Rank 0000000, 6.161713e+03 s, 00000106940896 kB] :: time step 0033600 :: write_image_to_disk 0
+[Rank 0000000, 6.184431e+03 s, 00000106940896 kB] :: time step 0033800 :: write_image_to_disk 0
+[Rank 0000000, 6.207146e+03 s, 00000106940896 kB] :: time step 0034000 :: write_image_to_disk 0
+[Rank 0000000, 6.234893e+03 s, 00000106940896 kB] :: time step 0034200 :: write_image_to_disk 0
+[Rank 0000000, 6.257592e+03 s, 00000106940896 kB] :: time step 0034400 :: write_image_to_disk 0
+[Rank 0000000, 6.280307e+03 s, 00000106940896 kB] :: time step 0034600 :: write_image_to_disk 0
+[Rank 0000000, 6.303015e+03 s, 00000106940896 kB] :: time step 0034800 :: write_image_to_disk 0
+[Rank 0000000, 6.325722e+03 s, 00000106940896 kB] :: time step 0035000 :: write_image_to_disk 1
+[Rank 0000000, 6.443313e+03 s, 00000106940896 kB] :: time step 0035200 :: write_image_to_disk 0
+[Rank 0000000, 6.465913e+03 s, 00000106940896 kB] :: time step 0035400 :: write_image_to_disk 0
+[Rank 0000000, 6.488602e+03 s, 00000106940896 kB] :: time step 0035600 :: write_image_to_disk 0
+[Rank 0000000, 6.511313e+03 s, 00000106940896 kB] :: time step 0035800 :: write_image_to_disk 0
+[Rank 0000000, 6.534025e+03 s, 00000106940896 kB] :: time step 0036000 :: write_image_to_disk 0
+[Rank 0000000, 6.561722e+03 s, 00000106940896 kB] :: time step 0036200 :: write_image_to_disk 0
+[Rank 0000000, 6.584415e+03 s, 00000106940896 kB] :: time step 0036400 :: write_image_to_disk 0
+[Rank 0000000, 6.607127e+03 s, 00000106940896 kB] :: time step 0036600 :: write_image_to_disk 0
+[Rank 0000000, 6.629838e+03 s, 00000106940896 kB] :: time step 0036800 :: write_image_to_disk 0
+[Rank 0000000, 6.652552e+03 s, 00000106940896 kB] :: time step 0037000 :: write_image_to_disk 0
+[Rank 0000000, 6.680354e+03 s, 00000106940896 kB] :: time step 0037200 :: write_image_to_disk 0
+[Rank 0000000, 6.703057e+03 s, 00000106940896 kB] :: time step 0037400 :: write_image_to_disk 0
+[Rank 0000000, 6.725769e+03 s, 00000106940896 kB] :: time step 0037600 :: write_image_to_disk 0
+[Rank 0000000, 6.748471e+03 s, 00000106940896 kB] :: time step 0037800 :: write_image_to_disk 0
+[Rank 0000000, 6.771186e+03 s, 00000106940896 kB] :: time step 0038000 :: write_image_to_disk 0
+[Rank 0000000, 6.798923e+03 s, 00000106940896 kB] :: time step 0038200 :: write_image_to_disk 0
+[Rank 0000000, 6.821615e+03 s, 00000106940896 kB] :: time step 0038400 :: write_image_to_disk 0
+[Rank 0000000, 6.844317e+03 s, 00000106940896 kB] :: time step 0038600 :: write_image_to_disk 0
+[Rank 0000000, 6.867020e+03 s, 00000106940896 kB] :: time step 0038800 :: write_image_to_disk 0
+[Rank 0000000, 6.889725e+03 s, 00000106940896 kB] :: time step 0039000 :: write_image_to_disk 0
+[Rank 0000000, 6.917420e+03 s, 00000106940896 kB] :: time step 0039200 :: write_image_to_disk 0
+[Rank 0000000, 6.940113e+03 s, 00000106940896 kB] :: time step 0039400 :: write_image_to_disk 0
+[Rank 0000000, 6.962822e+03 s, 00000106940896 kB] :: time step 0039600 :: write_image_to_disk 0
+[Rank 0000000, 6.985529e+03 s, 00000106940896 kB] :: time step 0039800 :: write_image_to_disk 0
+[Rank 0000000, 7.008242e+03 s, 00000106940896 kB] :: time step 0040000 :: write_image_to_disk 1
+[Rank 0000000, 7.191649e+03 s, 00000106940896 kB] :: time step 0040200 :: write_image_to_disk 0
+[Rank 0000000, 7.214302e+03 s, 00000106940896 kB] :: time step 0040400 :: write_image_to_disk 0
+[Rank 0000000, 7.237001e+03 s, 00000106940896 kB] :: time step 0040600 :: write_image_to_disk 0
+[Rank 0000000, 7.259710e+03 s, 00000106940896 kB] :: time step 0040800 :: write_image_to_disk 0
+[Rank 0000000, 7.282415e+03 s, 00000106940896 kB] :: time step 0041000 :: write_image_to_disk 0
+[Rank 0000000, 7.310160e+03 s, 00000106940896 kB] :: time step 0041200 :: write_image_to_disk 0
+[Rank 0000000, 7.332842e+03 s, 00000106940896 kB] :: time step 0041400 :: write_image_to_disk 0
+[Rank 0000000, 7.355551e+03 s, 00000106940896 kB] :: time step 0041600 :: write_image_to_disk 0
+[Rank 0000000, 7.378266e+03 s, 00000106940896 kB] :: time step 0041800 :: write_image_to_disk 0
+[Rank 0000000, 7.400981e+03 s, 00000106940896 kB] :: time step 0042000 :: write_image_to_disk 0
+[Rank 0000000, 7.428719e+03 s, 00000106940896 kB] :: time step 0042200 :: write_image_to_disk 0
+[Rank 0000000, 7.451420e+03 s, 00000106940896 kB] :: time step 0042400 :: write_image_to_disk 0
+[Rank 0000000, 7.474139e+03 s, 00000106940896 kB] :: time step 0042600 :: write_image_to_disk 0
+[Rank 0000000, 7.496854e+03 s, 00000106940896 kB] :: time step 0042800 :: write_image_to_disk 0
+[Rank 0000000, 7.519569e+03 s, 00000106940896 kB] :: time step 0043000 :: write_image_to_disk 0
+[Rank 0000000, 7.547275e+03 s, 00000106940896 kB] :: time step 0043200 :: write_image_to_disk 0
+[Rank 0000000, 7.569974e+03 s, 00000106940896 kB] :: time step 0043400 :: write_image_to_disk 0
+[Rank 0000000, 7.592688e+03 s, 00000106940896 kB] :: time step 0043600 :: write_image_to_disk 0
+[Rank 0000000, 7.615407e+03 s, 00000106940896 kB] :: time step 0043800 :: write_image_to_disk 0
+[Rank 0000000, 7.638121e+03 s, 00000106940896 kB] :: time step 0044000 :: write_image_to_disk 0
+[Rank 0000000, 7.665821e+03 s, 00000106940896 kB] :: time step 0044200 :: write_image_to_disk 0
+[Rank 0000000, 7.688512e+03 s, 00000106940896 kB] :: time step 0044400 :: write_image_to_disk 0
+[Rank 0000000, 7.711224e+03 s, 00000106940896 kB] :: time step 0044600 :: write_image_to_disk 0
+[Rank 0000000, 7.733938e+03 s, 00000106940896 kB] :: time step 0044800 :: write_image_to_disk 0
+[Rank 0000000, 7.756648e+03 s, 00000106940896 kB] :: time step 0045000 :: write_image_to_disk 1
+[Rank 0000000, 7.874582e+03 s, 00000106940896 kB] :: time step 0045200 :: write_image_to_disk 0
+[Rank 0000000, 7.897187e+03 s, 00000106940896 kB] :: time step 0045400 :: write_image_to_disk 0
+[Rank 0000000, 7.919887e+03 s, 00000106940896 kB] :: time step 0045600 :: write_image_to_disk 0
+[Rank 0000000, 7.942602e+03 s, 00000106940896 kB] :: time step 0045800 :: write_image_to_disk 0
+[Rank 0000000, 7.965304e+03 s, 00000106940896 kB] :: time step 0046000 :: write_image_to_disk 0
+[Rank 0000000, 7.993079e+03 s, 00000106940896 kB] :: time step 0046200 :: write_image_to_disk 0
+[Rank 0000000, 8.015767e+03 s, 00000106940896 kB] :: time step 0046400 :: write_image_to_disk 0
+[Rank 0000000, 8.038478e+03 s, 00000106940896 kB] :: time step 0046600 :: write_image_to_disk 0
+[Rank 0000000, 8.061186e+03 s, 00000106940896 kB] :: time step 0046800 :: write_image_to_disk 0
+[Rank 0000000, 8.083884e+03 s, 00000106940896 kB] :: time step 0047000 :: write_image_to_disk 0
+[Rank 0000000, 8.111651e+03 s, 00000106940896 kB] :: time step 0047200 :: write_image_to_disk 0
+[Rank 0000000, 8.134343e+03 s, 00000106940896 kB] :: time step 0047400 :: write_image_to_disk 0
+[Rank 0000000, 8.157048e+03 s, 00000106940896 kB] :: time step 0047600 :: write_image_to_disk 0
+[Rank 0000000, 8.179746e+03 s, 00000106940896 kB] :: time step 0047800 :: write_image_to_disk 0
+[Rank 0000000, 8.202451e+03 s, 00000106940896 kB] :: time step 0048000 :: write_image_to_disk 0
+[Rank 0000000, 8.230136e+03 s, 00000106940896 kB] :: time step 0048200 :: write_image_to_disk 0
+[Rank 0000000, 8.252822e+03 s, 00000106940896 kB] :: time step 0048400 :: write_image_to_disk 0
+[Rank 0000000, 8.275526e+03 s, 00000106940896 kB] :: time step 0048600 :: write_image_to_disk 0
+[Rank 0000000, 8.298239e+03 s, 00000106940896 kB] :: time step 0048800 :: write_image_to_disk 0
+[Rank 0000000, 8.320941e+03 s, 00000106940896 kB] :: time step 0049000 :: write_image_to_disk 0
+[Rank 0000000, 8.348672e+03 s, 00000106940896 kB] :: time step 0049200 :: write_image_to_disk 0
+[Rank 0000000, 8.371354e+03 s, 00000106940896 kB] :: time step 0049400 :: write_image_to_disk 0
+[Rank 0000000, 8.394051e+03 s, 00000106940896 kB] :: time step 0049600 :: write_image_to_disk 0
+[Rank 0000000, 8.416754e+03 s, 00000106940896 kB] :: time step 0049800 :: write_image_to_disk 0
+[Rank 0000000, 8.439458e+03 s, 00000106940896 kB] :: time step 0050000 :: write_image_to_disk 1
+[Rank 0000000, 8.573218e+03 s, 00000106940924 kB] :: -------------------
+[Rank 0000000, 8.573218e+03 s, 00000106940924 kB] :: SIMULATION FINISHED
+[1780563708.914543] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514080 was not matched
+[1780563708.914565] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511a40 was not matched
+[1780563708.914569] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515340 was not matched
+[1780563708.914575] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511980 was not matched
+[1780563708.914581] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513fc0 was not matched
+[1780563708.914586] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345118c0 was not matched
+[1780563708.914589] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516180 was not matched
+[1780563708.914592] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511800 was not matched
+[1780563708.914597] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513f00 was not matched
+[1780563708.914601] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511740 was not matched
+[1780563708.914605] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515280 was not matched
+[1780563708.914609] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511680 was not matched
+[1780563708.914613] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513e40 was not matched
+[1780563708.914618] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345115c0 was not matched
+[1780563708.914622] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515c40 was not matched
+[1780563708.914626] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511500 was not matched
+[1780563708.914629] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513d80 was not matched
+[1780563708.914633] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511440 was not matched
+[1780563708.914637] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345151c0 was not matched
+[1780563708.914641] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511380 was not matched
+[1780563708.914644] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513cc0 was not matched
+[1780563708.914648] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345112c0 was not matched
+[1780563708.914651] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345163c0 was not matched
+[1780563708.914655] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511200 was not matched
+[1780563708.914659] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513c00 was not matched
+[1780563708.914663] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511140 was not matched
+[1780563708.914666] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515100 was not matched
+[1780563708.914670] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511080 was not matched
+[1780563708.914673] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513b40 was not matched
+[1780563708.914677] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510fc0 was not matched
+[1780563708.914681] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515b80 was not matched
+[1780563708.914685] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510f00 was not matched
+[1780563708.914688] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513a80 was not matched
+[1780563708.914692] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510e40 was not matched
+[1780563708.914696] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515040 was not matched
+[1780563708.914700] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510d80 was not matched
+[1780563708.914707] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345139c0 was not matched
+[1780563708.914711] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510cc0 was not matched
+[1780563708.914715] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345160c0 was not matched
+[1780563708.914719] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510c00 was not matched
+[1780563708.914724] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513900 was not matched
+[1780563708.914728] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510b40 was not matched
+[1780563708.914734] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514f80 was not matched
+[1780563708.914739] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510a80 was not matched
+[1780563708.914743] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513840 was not matched
+[1780563708.914747] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345109c0 was not matched
+[1780563708.914750] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515ac0 was not matched
+[1780563708.914757] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510900 was not matched
+[1780563708.914761] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513780 was not matched
+[1780563708.914764] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510840 was not matched
+[1780563708.914768] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514ec0 was not matched
+[1780563708.914771] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34510780 was not matched
+[1780563708.914778] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345136c0 was not matched
+[1780563708.914782] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345106c0 was not matched
+[1780563708.914786] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516540 was not matched
+[1780563708.914793] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63840 was not matched
+[1780563708.914797] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513600 was not matched
+[1780563708.914801] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63780 was not matched
+[1780563708.914805] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514e00 was not matched
+[1780563708.914809] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f636c0 was not matched
+[1780563708.914813] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513540 was not matched
+[1780563708.914816] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63600 was not matched
+[1780563708.914820] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515a00 was not matched
+[1780563708.914824] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63540 was not matched
+[1780563708.914828] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513480 was not matched
+[1780563708.914831] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63480 was not matched
+[1780563708.914835] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514d40 was not matched
+[1780563708.914839] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f633c0 was not matched
+[1780563708.914843] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345133c0 was not matched
+[1780563708.914846] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63300 was not matched
+[1780563708.914850] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516000 was not matched
+[1780563708.914853] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63240 was not matched
+[1780563708.914857] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513300 was not matched
+[1780563708.914861] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63180 was not matched
+[1780563708.914867] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514c80 was not matched
+[1780563708.914871] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f630c0 was not matched
+[1780563708.914876] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513240 was not matched
+[1780563708.914881] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f63000 was not matched
+[1780563708.914886] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515940 was not matched
+[1780563708.914890] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62f40 was not matched
+[1780563708.914894] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513180 was not matched
+[1780563708.914898] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62e80 was not matched
+[1780563708.914901] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514bc0 was not matched
+[1780563708.914905] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62dc0 was not matched
+[1780563708.914908] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345130c0 was not matched
+[1780563708.914913] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62d00 was not matched
+[1780563708.914916] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516300 was not matched
+[1780563708.914919] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62c40 was not matched
+[1780563708.914923] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34513000 was not matched
+[1780563708.914929] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62b80 was not matched
+[1780563708.914933] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514b00 was not matched
+[1780563708.914937] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62ac0 was not matched
+[1780563708.914941] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512f40 was not matched
+[1780563708.914944] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62a00 was not matched
+[1780563708.914948] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515880 was not matched
+[1780563708.914951] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62940 was not matched
+[1780563708.914955] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512e80 was not matched
+[1780563708.914958] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62880 was not matched
+[1780563708.914962] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514a40 was not matched
+[1780563708.914966] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f627c0 was not matched
+[1780563708.914970] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512dc0 was not matched
+[1780563708.914973] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62700 was not matched
+[1780563708.914977] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515f40 was not matched
+[1780563708.914980] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62640 was not matched
+[1780563708.914986] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512d00 was not matched
+[1780563708.914990] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62580 was not matched
+[1780563708.914994] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514980 was not matched
+[1780563708.914998] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f624c0 was not matched
+[1780563708.915001] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512c40 was not matched
+[1780563708.915005] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62400 was not matched
+[1780563708.915008] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345157c0 was not matched
+[1780563708.915012] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62340 was not matched
+[1780563708.915015] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512b80 was not matched
+[1780563708.915019] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62280 was not matched
+[1780563708.915023] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345148c0 was not matched
+[1780563708.915030] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f621c0 was not matched
+[1780563708.915034] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512ac0 was not matched
+[1780563708.915037] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62100 was not matched
+[1780563708.915041] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516480 was not matched
+[1780563708.915045] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f62040 was not matched
+[1780563708.915049] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512a00 was not matched
+[1780563708.915058] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61f80 was not matched
+[1780563708.915061] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514800 was not matched
+[1780563708.915064] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61ec0 was not matched
+[1780563708.915071] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512940 was not matched
+[1780563708.915074] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61e00 was not matched
+[1780563708.915078] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515700 was not matched
+[1780563708.915083] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61d40 was not matched
+[1780563708.915086] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512880 was not matched
+[1780563708.915090] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61c80 was not matched
+[1780563708.915093] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514740 was not matched
+[1780563708.915097] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61bc0 was not matched
+[1780563708.915100] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345127c0 was not matched
+[1780563708.915104] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61b00 was not matched
+[1780563708.915108] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515e80 was not matched
+[1780563708.915112] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61a40 was not matched
+[1780563708.915115] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512700 was not matched
+[1780563708.915119] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61980 was not matched
+[1780563708.915123] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514680 was not matched
+[1780563708.915126] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f618c0 was not matched
+[1780563708.915131] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512640 was not matched
+[1780563708.915134] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61800 was not matched
+[1780563708.915140] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515640 was not matched
+[1780563708.915144] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61740 was not matched
+[1780563708.915148] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512580 was not matched
+[1780563708.915152] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61680 was not matched
+[1780563708.915155] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345145c0 was not matched
+[1780563708.915159] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f615c0 was not matched
+[1780563708.915162] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345124c0 was not matched
+[1780563708.915169] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61500 was not matched
+[1780563708.915173] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516240 was not matched
+[1780563708.915176] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61440 was not matched
+[1780563708.915180] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512400 was not matched
+[1780563708.915184] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61380 was not matched
+[1780563708.915188] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514500 was not matched
+[1780563708.915191] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f612c0 was not matched
+[1780563708.915195] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512340 was not matched
+[1780563708.915199] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61200 was not matched
+[1780563708.915202] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515580 was not matched
+[1780563708.915206] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61140 was not matched
+[1780563708.915210] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512280 was not matched
+[1780563708.915214] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f61080 was not matched
+[1780563708.915218] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514440 was not matched
+[1780563708.915222] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60fc0 was not matched
+[1780563708.915229] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345121c0 was not matched
+[1780563708.915233] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60f00 was not matched
+[1780563708.915245] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515dc0 was not matched
+[1780563708.915249] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60e40 was not matched
+[1780563708.915253] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512100 was not matched
+[1780563708.915259] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60d80 was not matched
+[1780563708.915263] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514380 was not matched
+[1780563708.915267] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60cc0 was not matched
+[1780563708.915274] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34512040 was not matched
+[1780563708.915278] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60c00 was not matched
+[1780563708.915281] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345154c0 was not matched
+[1780563708.915286] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60b40 was not matched
+[1780563708.915289] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511f80 was not matched
+[1780563708.915294] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60a80 was not matched
+[1780563708.915297] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x345142c0 was not matched
+[1780563708.915303] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f609c0 was not matched
+[1780563708.915308] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511ec0 was not matched
+[1780563708.915311] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60900 was not matched
+[1780563708.915315] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34516600 was not matched
+[1780563708.915319] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60840 was not matched
+[1780563708.915323] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511e00 was not matched
+[1780563708.915327] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60780 was not matched
+[1780563708.915331] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514200 was not matched
+[1780563708.915336] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f606c0 was not matched
+[1780563708.915339] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511d40 was not matched
+[1780563708.915343] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60600 was not matched
+[1780563708.915346] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515400 was not matched
+[1780563708.915351] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60540 was not matched
+[1780563708.915354] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511c80 was not matched
+[1780563708.915358] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60480 was not matched
+[1780563708.915362] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34514140 was not matched
+[1780563708.915366] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f603c0 was not matched
+[1780563708.915369] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511bc0 was not matched
+[1780563708.915373] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34f60300 was not matched
+[1780563708.915377] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34511b00 was not matched
+[1780563708.915383] [GPU4:4061436:0]       tag_match.c:62   UCX  WARN  unexpected tag-receive descriptor 0x34515d00 was not matched
+============================================================
+==> hemepure_gpu exited with status 0
+---- report.txt ----
+Configured by file /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/input_PP.xml with a 49484674 site geometry.
+There were 4623360 blocks, each with 512 sites (fluid and solid).
+Recorded 0 images.
+Ran with 2 threads.
+Ran for 50000 steps of an intended 50000.
+With 0.000016 seconds per time step.
+Sub-domains info:
+rank: 0, fluid sites: 0
+rank: 1, fluid sites: 49484674
+Timing data:
+Name Local Min Mean Max
+Total 8.44e+03 8.44e+03 8.51e+03 8.57e+03
+Seed Decomposition 1.83e-06 1.83e-06 0.0305 0.0611
+Domain Decomposition 1.72e-05 1.72e-05 7.23 14.5
+File Read 0.567 0.567 95.1 190
+Re Read 0 0 0 0
+Unzip 0 0 1.95 3.89
+Moves 0 0 4.6 9.19
+Parmetis 0 0 0 0
+Lattice Data initialisation 1.17e+03 1.17e+03 1.17e+03 1.17e+03
+Lattice Boltzmann 0.175 0.175 2.96e+03 5.92e+03
+LB calc only 6.98e+03 5.93e+03 6.45e+03 6.98e+03
+Monitoring 4.29e-05 4.29e-05 6.33 12.7
+MPI Send 0.136 0.136 0.298 0.459
+MPI Wait 6.98e+03 0.901 3.49e+03 6.98e+03
+Simulation total 6.99e+03 6.99e+03 7.06e+03 7.12e+03
+Reading communications 0 0 0 0
+Parsing 0 0 0 0
+Read IO 0 0 0 0
+Read Blocks prelim 0 0 0.629 1.26
+Read blocks all 0 0 93.9 188
+Move Forcing Counts 0 0 0 0
+Move Forcing Data 0 0 0 0
+Block Requirements 0 0 0 0
+Move Counts Sending 0 0 0 0
+Move Data Sending 0 0 0 0
+Populating moves list for decomposition optimisation 0 0 0 0
+Initial geometry reading 0 0 0 0
+Colloid initialisation 0 0 0 0
+Colloid position communication 0 0 0 0
+Colloid velocity communication 0 0 0 0
+Colloid force calculations 0 0 0 0
+Colloid calculations for updating 0 0 0 0
+Colloid outputting 0 0 0 0
+Extraction writing 0.0351 0.0351 596 1.19e+03
+Build type: 
+Optimisation level: -O3 -march=native
+Use SSE3: OFF
+Built at: 
+Reading group size: 2
+Lattice: D3Q19
+Kernel: LBGK
+Wall boundary condition: SIMPLEBOUNCEBACK
+Iolet boundary condition: 
+Wall/iolet boundary condition: 
+Communications options:
+Point to point implementation: Coalesce
+All to all implementation: Separated
+Gathers implementation: Separated
+Separated concerns: OFF

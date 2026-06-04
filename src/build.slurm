@@ -4,7 +4,6 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
-#SBATCH --mem=32G
 #SBATCH --time=01:30:00
 #SBATCH --output=build_%j.out 
 #

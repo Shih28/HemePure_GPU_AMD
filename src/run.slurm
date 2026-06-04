@@ -5,8 +5,7 @@
 #SBATCH --ntasks=2                 # rank 0 = CPU master, rank 1 = GPU worker (NGPUS+1)
 #SBATCH --cpus-per-task=8
 #SBATCH --gres=gpu:r9700:1         # the AMD R9700 (RDNA4, gfx1201). NEVER plain gpu:1 (may grab a 5090)
-#SBATCH --mem=32G
-#SBATCH --time=02:00:00
+#SBATCH --time=02:30:00
 #SBATCH --output=run_%j.out
 #
 # Runs a pre-built HemeLB-GPU (AMD/ROCm) executable on a test case.
