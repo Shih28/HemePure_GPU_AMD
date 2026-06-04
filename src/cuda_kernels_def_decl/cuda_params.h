@@ -22,19 +22,19 @@ extern __constant__ hemelb::site_t _Iolets_OutletWall_Edge[local_iolets_MaxSIZE]
 extern __constant__ hemelb::site_t _Iolets_Outlet_Inner[local_iolets_MaxSIZE];
 extern __constant__ hemelb::site_t _Iolets_OutletWall_Inner[local_iolets_MaxSIZE];
 extern __constant__ unsigned int _NUMVECTORS;
-extern __constant__ double dev_tau;
-extern __constant__ double dev_minusInvTau;
+extern __constant__ distribn_t dev_tau;
+extern __constant__ distribn_t dev_minusInvTau;
 extern __constant__ int _InvDirections_19[19];
-extern __device__ __constant__ double _EQMWEIGHTS_19[19];
+extern __device__ __constant__ distribn_t _EQMWEIGHTS_19[19];
 extern __constant__ int _CX_19[19];
 extern __constant__ int _CY_19[19];
 extern __constant__ int _CZ_19[19];
-extern __constant__ double _Cs2;
+extern __constant__ distribn_t _Cs2;
 extern __constant__ bool _useWeightsFromFile;
-extern __constant__ double _iStressParameter;
+extern __constant__ distribn_t _iStressParameter;
 extern __constant__ int _WriteStep;
 extern __constant__ int _Send_MacroVars_DtH;
-extern __constant__ double dev_smag_cnst;
+extern __constant__ distribn_t dev_smag_cnst;
 
 namespace hemelb
 {

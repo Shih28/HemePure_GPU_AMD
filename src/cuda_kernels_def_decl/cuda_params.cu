@@ -295,19 +295,19 @@ __constant__ hemelb::site_t _Iolets_OutletWall_Edge[local_iolets_MaxSIZE];
 __constant__ hemelb::site_t _Iolets_Outlet_Inner[local_iolets_MaxSIZE];
 __constant__ hemelb::site_t _Iolets_OutletWall_Inner[local_iolets_MaxSIZE];
 __constant__ unsigned int _NUMVECTORS;
-__constant__ double dev_tau;
-__constant__ double dev_minusInvTau;
-__constant__ double _Cs2;
+__constant__ distribn_t dev_tau;
+__constant__ distribn_t dev_minusInvTau;
+__constant__ distribn_t _Cs2;
 __constant__ bool _useWeightsFromFile;
-__constant__ double _iStressParameter;
+__constant__ distribn_t _iStressParameter;
 __constant__ int _InvDirections_19[19];
-__device__ __constant__ double _EQMWEIGHTS_19[19];
+__device__ __constant__ distribn_t _EQMWEIGHTS_19[19];
 __constant__ int _CX_19[19];
 __constant__ int _CY_19[19];
 __constant__ int _CZ_19[19];
 __constant__ int _WriteStep = 100;
 __constant__ int _Send_MacroVars_DtH = 100;
-__constant__ double dev_smag_cnst;
+__constant__ distribn_t dev_smag_cnst;
 #endif
 
 
@@ -2716,17 +2716,28 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 		e = hipMemcpy(sym_ptr, src, sz, hipMemcpyHostToDevice); \
 		if (e != hipSuccess) { fprintf(stderr, "hipMemcpy(" #sym "): %s\n", hipGetErrorString(e)); return false; }
 
-		SYM_COPY(_EQMWEIGHTS_19,     eqmweights,       numvectors*sizeof(double))
+		// Narrow scalars/array to distribn_t in case it is float (FP32 patch).
+		// LatticeType::EQMWEIGHTS and LbmParameters getters are still double on the host;
+		// the device-side __constant__ symbols are distribn_t, so we must copy the
+		// matching width or hipMemcpy will silently mis-load bytes.
+		distribn_t tau_n          = (distribn_t) tau;
+		distribn_t minusInvTau_n  = (distribn_t) minusInvTau;
+		distribn_t cs2_n          = (distribn_t) cs2;
+		distribn_t iStressParameter_n = (distribn_t) iStressParameter;
+		distribn_t eqmweights_n[64];   // numvectors <= 27 for D3Q27
+		for (unsigned i = 0; i < numvectors; ++i) eqmweights_n[i] = (distribn_t) eqmweights[i];
+
+		SYM_COPY(_EQMWEIGHTS_19,     eqmweights_n,      numvectors*sizeof(distribn_t))
 		SYM_COPY(_NUMVECTORS,        &numvectors,       sizeof(numvectors))
 		SYM_COPY(_InvDirections_19,  invdirections,     numvectors*sizeof(int))
 		SYM_COPY(_CX_19,             cx,                numvectors*sizeof(int))
 		SYM_COPY(_CY_19,             cy,                numvectors*sizeof(int))
 		SYM_COPY(_CZ_19,             cz,                numvectors*sizeof(int))
-		SYM_COPY(dev_tau,            &tau,              sizeof(tau))
-		SYM_COPY(dev_minusInvTau,    &minusInvTau,      sizeof(minusInvTau))
-		SYM_COPY(_Cs2,               &cs2,              sizeof(cs2))
+		SYM_COPY(dev_tau,            &tau_n,            sizeof(tau_n))
+		SYM_COPY(dev_minusInvTau,    &minusInvTau_n,    sizeof(minusInvTau_n))
+		SYM_COPY(_Cs2,               &cs2_n,            sizeof(cs2_n))
 		SYM_COPY(_useWeightsFromFile, &useWeightsFromFile, sizeof(useWeightsFromFile))
-		SYM_COPY(_iStressParameter,  &iStressParameter, sizeof(iStressParameter))
+		SYM_COPY(_iStressParameter,  &iStressParameter_n, sizeof(iStressParameter_n))
 
 #undef SYM_COPY
 		return true;

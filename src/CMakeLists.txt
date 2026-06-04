@@ -60,7 +60,7 @@ set(HEMELB_DEPENDENCIES_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../dep/"
 	CACHE FILEPATH "path to find dependency find modules")
 set(HEMELB_DEPENDENCIES_INSTALL_PATH "${HEMELB_DEPENDENCIES_PATH}/install"
 	CACHE FILEPATH "path to find dependency includes and libraries")
-set(HEMELB_OPTIMISATION "-O3"
+set(HEMELB_OPTIMISATION "-O3 -march=native -ffast-math"
 	CACHE STRING "optimisation level: <blank> or -O1 to -O4)")
 set(HEMELB_LATTICE "D3Q19"
 	CACHE STRING "lattice type: 'D3Q15','D3Q19','D3Q27','D3Q15i'")
@@ -100,6 +100,9 @@ endif()
 if(HEMELB_OPTIMISATION)
 	set(CMAKE_CXX_FLAGS_RELEASE ${HEMELB_OPTIMISATION})
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${HEMELB_OPTIMISATION}")
+  # Host CPU SIMD / fast-math (host code only; GPU is the hot path)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=native -ffast-math -funroll-loops")
+
 endif()
 
 
@@ -440,7 +443,7 @@ if(USE_HIP)
     cuda_kernels_def_decl/GPU_Collide_Stream_wall_sBB_Iolets.cu
   )
   set_source_files_properties(${hip_sources} main.cc PROPERTIES LANGUAGE HIP)
-  set_source_files_properties(${hip_sources} main.cc PROPERTIES COMPILE_FLAGS "-fgpu-rdc")
+  set_source_files_properties(${hip_sources} main.cc PROPERTIES COMPILE_FLAGS  "-fgpu-rdc -ffast-math -fgpu-flush-denormals-to-zero -munsafe-fp-atomics")
 
   add_library(gpu_objs ${hip_sources})
 

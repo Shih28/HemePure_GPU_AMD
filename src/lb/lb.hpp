@@ -6027,7 +6027,9 @@ template<class LatticeType>
 
 					//====================================================================
 					// Copy constants to the GPU memory - Limit is 64 kB
-					double smag_cnst = mSimConfig->GetCSmagorinsky();//mParams.Smagorinsky_const;
+					// FP32 patch: dev_smag_cnst is distribn_t on the device, so the source
+					// must be distribn_t-wide or sizeof(smag_cnst) overcopies.
+					distribn_t smag_cnst = (distribn_t) mSimConfig->GetCSmagorinsky();
 					//if(myPiD==1) printf("Smagorinsky constant = %.2f \n\n", smag_cnst);
 
 					status = deviceMemcpyToSymbol(&::dev_smag_cnst, &smag_cnst, sizeof(smag_cnst), 0, memcpyHostToDevice);
@@ -6977,9 +6979,9 @@ template<class LatticeType>
 				// To access the data in GPU global memory nArr_dbl is the number of fluid elements that sets how these are organised in memory; see Initialise_GPU (method b - by index LB)
 				// nArr_dbl = (mLatDat->GetLocalFluidSiteCount()) = nFluid_nodes
 				if(nBlocks_Collide!=0)
-					hemelb::GPU_CollideStream_1_PreReceive_SaveMacroVars<<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_1>>> ( (double*)GPUDataAddr_dbl_fOld_b,
-																																																														(double*)GPUDataAddr_dbl_fNew_b,
-																																																														(double*)GPUDataAddr_dbl_MacroVars,
+					hemelb::GPU_CollideStream_1_PreReceive_SaveMacroVars<<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_1>>> ( (distribn_t*)GPUDataAddr_dbl_fOld_b,
+																																																														(distribn_t*)GPUDataAddr_dbl_fNew_b,
+																																																														(distribn_t*)GPUDataAddr_dbl_MacroVars,
 																																																														(int64_t*)GPUDataAddr_int64_Neigh_d,
 																																																														(mLatDat->GetLocalFluidSiteCount()),
 																																																														first_Index,
@@ -7236,9 +7238,9 @@ template<class LatticeType>
 				// To access the data in GPU global memory:
 				// nArr_dbl =  (mLatDat->GetLocalFluidSiteCount()) is the number of fluid elements that sets how these are organised in memory; see Initialise_GPU (method b - by index LB)
 				if(nBlocks_Collide!=0)
-					hemelb::GPU_CollideStream_mWallCollision_sBB_PreRec <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_2>>> (	(double*)GPUDataAddr_dbl_fOld_b,
-															(double*)GPUDataAddr_dbl_fNew_b,
-															(double*)GPUDataAddr_dbl_MacroVars,
+					hemelb::GPU_CollideStream_mWallCollision_sBB_PreRec <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_2>>> (	(distribn_t*)GPUDataAddr_dbl_fOld_b,
+															(distribn_t*)GPUDataAddr_dbl_fNew_b,
+															(distribn_t*)GPUDataAddr_dbl_MacroVars,
 															(int64_t*)GPUDataAddr_int64_Neigh_d,
 															(uint32_t*)GPUDataAddr_uint32_Wall,
 															(mLatDat->GetLocalFluidSiteCount()),
@@ -7304,9 +7306,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -7320,9 +7322,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -7338,9 +7340,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2 <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -7354,9 +7356,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2 <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -7432,9 +7434,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -7448,9 +7450,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -7466,9 +7468,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2 <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -7482,9 +7484,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2 <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -7566,9 +7568,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7585,9 +7587,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7606,9 +7608,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7625,9 +7627,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7712,9 +7714,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_6>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7731,9 +7733,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_6>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7752,9 +7754,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_6>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -7771,9 +7773,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreSend_6>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8013,9 +8015,9 @@ template<class LatticeType>
 				// To access the data in GPU global memory:
 				// nArr_dbl =  (mLatDat->GetLocalFluidSiteCount()) is the number of fluid elements that sets how these are organised in memory; see Initialise_GPU (method b - by index LB)
 				if(nBlocks_Collide!=0)
-					hemelb::GPU_CollideStream_1_PreReceive_SaveMacroVars <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_1>>> (	(double*)GPUDataAddr_dbl_fOld_b,
-																									(double*)GPUDataAddr_dbl_fNew_b,
-																									(double*)GPUDataAddr_dbl_MacroVars,
+					hemelb::GPU_CollideStream_1_PreReceive_SaveMacroVars <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_1>>> (	(distribn_t*)GPUDataAddr_dbl_fOld_b,
+																									(distribn_t*)GPUDataAddr_dbl_fNew_b,
+																									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 																									(int64_t*)GPUDataAddr_int64_Neigh_d,
 																									(mLatDat->GetLocalFluidSiteCount()),
 																									offset, (offset + site_Count), mLatDat->totalSharedFs, mState->GetTimeStep()); //
@@ -8071,9 +8073,9 @@ template<class LatticeType>
 				// nArr_dbl =  (mLatDat->GetLocalFluidSiteCount()) is the number of fluid elements that sets how these are organised in memory; see Initialise_GPU (method b - by index LB)
 				// Wall BCs: Remember that at the moment this is ONLY valid for Simple Bounce Back
 				if(nBlocks_Collide!=0)
-					hemelb::GPU_CollideStream_mWallCollision_sBB_PreRec <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_2>>> (	(double*)GPUDataAddr_dbl_fOld_b,
-																						(double*)GPUDataAddr_dbl_fNew_b,
-																						(double*)GPUDataAddr_dbl_MacroVars,
+					hemelb::GPU_CollideStream_mWallCollision_sBB_PreRec <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_2>>> (	(distribn_t*)GPUDataAddr_dbl_fOld_b,
+																						(distribn_t*)GPUDataAddr_dbl_fNew_b,
+																						(distribn_t*)GPUDataAddr_dbl_MacroVars,
 																						(int64_t*)GPUDataAddr_int64_Neigh_d,
 																						(uint32_t*)GPUDataAddr_uint32_Wall,
 																						(mLatDat->GetLocalFluidSiteCount()),
@@ -8256,9 +8258,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure<<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -8272,9 +8274,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure<<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -8290,9 +8292,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2<<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -8306,9 +8308,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2<<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_3>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity,
@@ -8384,9 +8386,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -8400,9 +8402,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -8418,9 +8420,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2 <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -8434,9 +8436,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_Iolets_NashZerothOrderPressure_v2 <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_4>>> (
-									(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-									(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-									(double*)GPUDataAddr_dbl_MacroVars,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+									(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+									(distribn_t*)GPUDataAddr_dbl_MacroVars,
 									(int64_t*)GPUDataAddr_int64_Neigh_d,
 									(uint32_t*)GPUDataAddr_uint32_Iolet,
 									(distribn_t*)d_ghostDensity_out,
@@ -8531,9 +8533,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8550,9 +8552,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8571,9 +8573,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8590,9 +8592,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_5>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8679,9 +8681,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_6>>> (
-												(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-												(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-												(double*)GPUDataAddr_dbl_MacroVars,
+												(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+												(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+												(distribn_t*)GPUDataAddr_dbl_MacroVars,
 												(int64_t*)GPUDataAddr_int64_Neigh_d,
 												(uint32_t*)GPUDataAddr_uint32_Wall,
 												(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8698,9 +8700,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_6>>> (
-												(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-												(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-												(double*)GPUDataAddr_dbl_MacroVars,
+												(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+												(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+												(distribn_t*)GPUDataAddr_dbl_MacroVars,
 												(int64_t*)GPUDataAddr_int64_Neigh_d,
 												(uint32_t*)GPUDataAddr_uint32_Wall,
 												(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8719,9 +8721,9 @@ template<class LatticeType>
 							//
 							if (hemeKernel == "LBGKSL"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_6>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -8738,9 +8740,9 @@ template<class LatticeType>
 							}
 							else if(hemeKernel == "LBGK"){
 								hemelb::GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress <<<nBlocks_Collide, nThreads_Collide, 0, Collide_Stream_PreRec_6>>> (
-										(double*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
-										(double*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
-										(double*)GPUDataAddr_dbl_MacroVars,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fOld_b_mLatDat,
+										(distribn_t*)mLatDat->GPUDataAddr_dbl_fNew_b_mLatDat,
+										(distribn_t*)GPUDataAddr_dbl_MacroVars,
 										(int64_t*)GPUDataAddr_int64_Neigh_d,
 										(uint32_t*)GPUDataAddr_uint32_Wall,
 										(uint32_t*)GPUDataAddr_uint32_Iolet,
@@ -9039,8 +9041,8 @@ template<class LatticeType>
 				int nBlocks_Swap = site_Count/nThreadsPerBlock_SwapOldAndNew			+ ((site_Count % nThreadsPerBlock_SwapOldAndNew > 0)         ? 1 : 0);
 
 				if(nBlocks_Swap!=0)
-					hemelb::GPU_SwapOldAndNew <<<nBlocks_Swap, nThreads_Swap, 0, stream_ReceivedDistr>>> ( (double*)GPUDataAddr_dbl_fOld_b, (double*)GPUDataAddr_dbl_fNew_b, site_Count, offset, (offset + site_Count));
-					//hemelb::GPU_SwapOldAndNew <<<nBlocks_Swap, nThreads_Swap, 0, stream_SwapOldAndNew>>> ( (double*)GPUDataAddr_dbl_fOld_b, (double*)GPUDataAddr_dbl_fNew_b, site_Count, offset, (offset + site_Count));
+					hemelb::GPU_SwapOldAndNew <<<nBlocks_Swap, nThreads_Swap, 0, stream_ReceivedDistr>>> ( (distribn_t*)GPUDataAddr_dbl_fOld_b, (distribn_t*)GPUDataAddr_dbl_fNew_b, site_Count, offset, (offset + site_Count));
+					//hemelb::GPU_SwapOldAndNew <<<nBlocks_Swap, nThreads_Swap, 0, stream_SwapOldAndNew>>> ( (distribn_t*)GPUDataAddr_dbl_fOld_b, (distribn_t*)GPUDataAddr_dbl_fNew_b, site_Count, offset, (offset + site_Count));
 				// End of Approach 1
 				*/
 

@@ -1,0 +1,253 @@
+============================================================
+  case  : Aneurysm  (variant PP)
+  exe   : /home/hpc-i/student10/HemePure_GPU_AMD/src/build/hemepure_gpu_PP
+  input : /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/input_PP.xml
+  output: /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/results_Aneurysm_14933
+  ntasks: 2   gpus: 1
+  node  : GPU4
+============================================================
+[GPU4:3354115] Warning: could not find environment variable "HIP_VISIBLE_DEVICES"
+[1779676456.977933] [GPU4:3354123:0]          parser.c:2363 UCX  WARN  unused environment variable: UCX_CUDA_IPC_ENABLE_MNNVL
+[1779676456.977933] [GPU4:3354123:0]          parser.c:2363 UCX  WARN  (set UCX_WARN_UNUSED_ENV_VARS=n to suppress this warning)
+[1779676456.977933] [GPU4:3354122:0]          parser.c:2363 UCX  WARN  unused environment variable: UCX_CUDA_IPC_ENABLE_MNNVL
+[1779676456.977933] [GPU4:3354122:0]          parser.c:2363 UCX  WARN  (set UCX_WARN_UNUSED_ENV_VARS=n to suppress this warning)
+[Rank 0000000, 5.637990e-04 s, 00000000085072 kB] :: INITIALISE
+[Rank 0000000, 6.297180e-04 s, 00000000085072 kB] :: ----------
+[Rank 0000000, 6.631880e-04 s, 00000000085072 kB] :: --> loading input and decomposing geometry
+[Rank 0000000, 3.840199e-03 s, 00000000087192 kB] :: ----> opened data file /home/hpc-i/student10/HemePure_GPU_AMD/cases/Aneurysm/reference_BA_clipped.gmy
+[Rank 0000000, 3.892718e-03 s, 00000000087192 kB] :: ----> reading preamble
+[Rank 0000000, 3.947109e-03 s, 00000000087296 kB] :: ----> reading header (start)
+[Rank 0000000, 2.280450e-01 s, 00000000112584 kB] :: ----> reading header (end)
+[Rank 0000000, 4.978568e-01 s, 00000000112520 kB] :: ----> non-empty blocks: 112341
+[Rank 0000000, 4.979217e-01 s, 00000000112520 kB] ::           total blocks: 4623360
+[Rank 0000000, 4.988822e-01 s, 00000000112520 kB] ::                  ratio: 0.024299
+[Rank 0000000, 4.989223e-01 s, 00000000112544 kB] ::                  sites: 49484674
+[Rank 0000000, 4.989557e-01 s, 00000000112544 kB] :: ----> blockInformation.size(): 112341
+[Rank 0000000, 4.989881e-01 s, 00000000112544 kB] ::  fluidSitesOnEachBlock.size(): 0
+[Rank 0000000, 4.990201e-01 s, 00000000112544 kB] ::           blockWeights.size(): 0
+[Rank 0000000, 4.990527e-01 s, 00000000112544 kB] :: ----> is blockInformation.size() == nonEmptyBlocks? yes
+[Rank 0000000, 4.990851e-01 s, 00000000112544 kB] :: ----> not optimising decomposition
+[Rank 0000000, 5.001549e-01 s, 00000000112596 kB] :: ----> basic decomposition (start)
+[Rank 0000001, 5.553528e-01 s, 00000000055296 kB] :: ----> load distribution: 0.000000
+[Rank 0000000, 5.569445e-01 s, 00000000120772 kB] :: ----> basic decomposition (end)
+[Rank 0000000, 5.569966e-01 s, 00000000120772 kB] :: ----> read blocks (start)
+[Rank 0000000, 1.864686e+02 s, 00000013730456 kB] :: ----> read blocks (end)
+[Rank 0000000, 2.002468e+02 s, 00000013722336 kB] :: --> lattice data
+[Rank 0000000, 2.002550e+02 s, 00000013722336 kB] :: ----> LatticeDataInitializer: sorting Nonempty blocks
+[Rank 0000000, 2.145842e+02 s, 00000013722336 kB] :: ----> LatticeDataInitializer: setting basic Details
+[Rank 0000000, 2.145843e+02 s, 00000013722336 kB] :: ----> LatticeDataInitializer: processing read sites
+[Rank 0000000, 4.478996e+02 s, 00000040287276 kB] :: ----> LatticeDataInitializer: Collect Fluid Distributions
+[Rank 0000000, 4.478997e+02 s, 00000040287276 kB] :: ----> gathering lattice information (start)
+[Rank 0000000, 4.478998e+02 s, 00000040287276 kB] :: ----> gathering lattice information (end)
+[Rank 0000000, 4.478998e+02 s, 00000040287276 kB] :: ----> collecting site extrema (start)
+[Rank 0000000, 4.557454e+02 s, 00000040287276 kB] :: ----> collecting site extrema (end)
+[Rank 0000000, 4.557454e+02 s, 00000040287276 kB] :: ----> LatticeDataInitializer: Initialize Neighbor lookups
+[Rank 0000000, 4.557455e+02 s, 00000040287280 kB] :: ----> initializing neighbour lookups (start)
+[Rank 0000000, 4.557455e+02 s, 00000040287280 kB] :: ----> initializing neighbour lookups: NLookup
+[Rank 0000000, 7.877467e+02 s, 00000047632664 kB] :: ----> initializing neighbour lookups: Point to Point comms
+[Rank 0000000, 7.877468e+02 s, 00000047632664 kB] :: ----> initializing neighbour lookups: Receive Lookup
+[Rank 0000000, 7.877468e+02 s, 00000047632664 kB] :: ----> initializing neighbour lookups (end)
+[Rank 0000000, 7.877469e+02 s, 00000047632664 kB] :: ----> LatticeDataInitializer: done
+[Rank 0000000, 7.877469e+02 s, 00000047632664 kB] :: --> neighbouring data manager
+[Rank 0000000, 7.877469e+02 s, 00000047632664 kB] :: --> lattice-Boltzmann model
+Rank 0: Detected 1 GPU device(s)
+===============================================
+Device properties: 
+Device name:  AMDGCN GFX525586656
+Compute Capability: 12.0
+
+Total Global Mem:    31.9GB
+Number of Streaming Multiprocessors:  32
+Shared Mem Per SM:   64KB
+Max Number of Threads per Block:  1024
+Max Number of Blocks allowed in x-dir:  2147483647
+Max Number of Blocks allowed in y-dir:  65536
+Warp Size:  32
+===============================================
+
+================================================================
+Rank: 1, n_Inlets_Inner: 1, n_InletsWall_Inner: 1, n_Inlets_Edge: 0, n_InletsWall_Edge: 0 
+Rank: 1, n_Outlets_Inner: 2, n_OutletsWall_Inner: 2, n_Outlets_Edge: 0, n_OutletsWall_Edge: 0 
+================================================================
+Relaxation Time = 0.80720
+
+[Rank 0000000, 9.694153e+02 s, 00000105357564 kB] :: -------------------
+[Rank 0000000, 9.694153e+02 s, 00000105357564 kB] :: INITIALISE FINISHED
+[Rank 0000000, 9.715237e+02 s, 00000105357564 kB] :: SIMULATION STARTING
+[Rank 0000000, 9.715237e+02 s, 00000105357564 kB] :: -------------------
+[Rank 0000000, 9.937379e+02 s, 00000105392184 kB] :: time step 0000200 :: write_image_to_disk 0
+[Rank 0000000, 1.015652e+03 s, 00000105393032 kB] :: time step 0000400 :: write_image_to_disk 0
+[Rank 0000000, 1.037749e+03 s, 00000105393496 kB] :: time step 0000600 :: write_image_to_disk 0
+[Rank 0000000, 1.059935e+03 s, 00000105393500 kB] :: time step 0000800 :: write_image_to_disk 0
+[Rank 0000000, 1.082153e+03 s, 00000105393504 kB] :: time step 0001000 :: write_image_to_disk 0
+[Rank 0000000, 1.106862e+03 s, 00000106939912 kB] :: time step 0001200 :: write_image_to_disk 0
+[Rank 0000000, 1.129162e+03 s, 00000106939912 kB] :: time step 0001400 :: write_image_to_disk 0
+[Rank 0000000, 1.151596e+03 s, 00000106939912 kB] :: time step 0001600 :: write_image_to_disk 0
+[Rank 0000000, 1.174152e+03 s, 00000106939912 kB] :: time step 0001800 :: write_image_to_disk 0
+[Rank 0000000, 1.196734e+03 s, 00000106939912 kB] :: time step 0002000 :: write_image_to_disk 0
+[Rank 0000000, 1.221049e+03 s, 00000106939912 kB] :: time step 0002200 :: write_image_to_disk 0
+[Rank 0000000, 1.243645e+03 s, 00000106939912 kB] :: time step 0002400 :: write_image_to_disk 0
+[Rank 0000000, 1.266244e+03 s, 00000106939912 kB] :: time step 0002600 :: write_image_to_disk 0
+[Rank 0000000, 1.288842e+03 s, 00000106939912 kB] :: time step 0002800 :: write_image_to_disk 0
+[Rank 0000000, 1.311428e+03 s, 00000106939912 kB] :: time step 0003000 :: write_image_to_disk 0
+[Rank 0000000, 1.335750e+03 s, 00000106939912 kB] :: time step 0003200 :: write_image_to_disk 0
+[Rank 0000000, 1.358360e+03 s, 00000106939912 kB] :: time step 0003400 :: write_image_to_disk 0
+[Rank 0000000, 1.380967e+03 s, 00000106939912 kB] :: time step 0003600 :: write_image_to_disk 0
+[Rank 0000000, 1.403570e+03 s, 00000106939912 kB] :: time step 0003800 :: write_image_to_disk 0
+[Rank 0000000, 1.426173e+03 s, 00000106939912 kB] :: time step 0004000 :: write_image_to_disk 0
+[Rank 0000000, 1.450498e+03 s, 00000106939912 kB] :: time step 0004200 :: write_image_to_disk 0
+[Rank 0000000, 1.473115e+03 s, 00000106939912 kB] :: time step 0004400 :: write_image_to_disk 0
+[Rank 0000000, 1.495737e+03 s, 00000106939912 kB] :: time step 0004600 :: write_image_to_disk 0
+[Rank 0000000, 1.518355e+03 s, 00000106939912 kB] :: time step 0004800 :: write_image_to_disk 0
+[Rank 0000000, 1.540978e+03 s, 00000106939912 kB] :: time step 0005000 :: write_image_to_disk 1
+[Rank 0000000, 1.615053e+03 s, 00000106940344 kB] :: time step 0005200 :: write_image_to_disk 0
+[Rank 0000000, 1.637561e+03 s, 00000106940344 kB] :: time step 0005400 :: write_image_to_disk 0
+[Rank 0000000, 1.660182e+03 s, 00000106940344 kB] :: time step 0005600 :: write_image_to_disk 0
+[Rank 0000000, 1.682817e+03 s, 00000106940344 kB] :: time step 0005800 :: write_image_to_disk 0
+[Rank 0000000, 1.705443e+03 s, 00000106940344 kB] :: time step 0006000 :: write_image_to_disk 0
+[Rank 0000000, 1.729792e+03 s, 00000106940344 kB] :: time step 0006200 :: write_image_to_disk 0
+[Rank 0000000, 1.752432e+03 s, 00000106940344 kB] :: time step 0006400 :: write_image_to_disk 0
+[Rank 0000000, 1.775069e+03 s, 00000106940344 kB] :: time step 0006600 :: write_image_to_disk 0
+[Rank 0000000, 1.797697e+03 s, 00000106940344 kB] :: time step 0006800 :: write_image_to_disk 0
+[Rank 0000000, 1.820332e+03 s, 00000106940344 kB] :: time step 0007000 :: write_image_to_disk 0
+[Rank 0000000, 1.844697e+03 s, 00000106940344 kB] :: time step 0007200 :: write_image_to_disk 0
+[Rank 0000000, 1.867340e+03 s, 00000106940344 kB] :: time step 0007400 :: write_image_to_disk 0
+[Rank 0000000, 1.889975e+03 s, 00000106940344 kB] :: time step 0007600 :: write_image_to_disk 0
+[Rank 0000000, 1.912612e+03 s, 00000106940344 kB] :: time step 0007800 :: write_image_to_disk 0
+[Rank 0000000, 1.935240e+03 s, 00000106940344 kB] :: time step 0008000 :: write_image_to_disk 0
+[Rank 0000000, 1.959593e+03 s, 00000106940344 kB] :: time step 0008200 :: write_image_to_disk 0
+[Rank 0000000, 1.982239e+03 s, 00000106940344 kB] :: time step 0008400 :: write_image_to_disk 0
+[Rank 0000000, 2.004881e+03 s, 00000106940344 kB] :: time step 0008600 :: write_image_to_disk 0
+[Rank 0000000, 2.027514e+03 s, 00000106940344 kB] :: time step 0008800 :: write_image_to_disk 0
+[Rank 0000000, 2.050147e+03 s, 00000106940344 kB] :: time step 0009000 :: write_image_to_disk 0
+[Rank 0000000, 2.074489e+03 s, 00000106940344 kB] :: time step 0009200 :: write_image_to_disk 0
+[Rank 0000000, 2.097126e+03 s, 00000106940344 kB] :: time step 0009400 :: write_image_to_disk 0
+[Rank 0000000, 2.119763e+03 s, 00000106940344 kB] :: time step 0009600 :: write_image_to_disk 0
+[Rank 0000000, 2.142417e+03 s, 00000106940344 kB] :: time step 0009800 :: write_image_to_disk 0
+[Rank 0000000, 2.165134e+03 s, 00000106940344 kB] :: time step 0010000 :: write_image_to_disk 1
+[Rank 0000000, 2.276606e+03 s, 00000106940344 kB] :: time step 0010200 :: write_image_to_disk 0
+[Rank 0000000, 2.298990e+03 s, 00000106940344 kB] :: time step 0010400 :: write_image_to_disk 0
+[Rank 0000000, 2.321709e+03 s, 00000106940344 kB] :: time step 0010600 :: write_image_to_disk 0
+[Rank 0000000, 2.344465e+03 s, 00000106940344 kB] :: time step 0010800 :: write_image_to_disk 0
+[Rank 0000000, 2.367196e+03 s, 00000106940344 kB] :: time step 0011000 :: write_image_to_disk 0
+[Rank 0000000, 2.391620e+03 s, 00000106940344 kB] :: time step 0011200 :: write_image_to_disk 0
+[Rank 0000000, 2.414332e+03 s, 00000106940344 kB] :: time step 0011400 :: write_image_to_disk 0
+[Rank 0000000, 2.437055e+03 s, 00000106940344 kB] :: time step 0011600 :: write_image_to_disk 0
+[Rank 0000000, 2.459767e+03 s, 00000106940344 kB] :: time step 0011800 :: write_image_to_disk 0
+[Rank 0000000, 2.482473e+03 s, 00000106940344 kB] :: time step 0012000 :: write_image_to_disk 0
+[Rank 0000000, 2.506889e+03 s, 00000106940344 kB] :: time step 0012200 :: write_image_to_disk 0
+[Rank 0000000, 2.529577e+03 s, 00000106940344 kB] :: time step 0012400 :: write_image_to_disk 0
+[Rank 0000000, 2.552284e+03 s, 00000106940344 kB] :: time step 0012600 :: write_image_to_disk 0
+[Rank 0000000, 2.574994e+03 s, 00000106940344 kB] :: time step 0012800 :: write_image_to_disk 0
+[Rank 0000000, 2.597688e+03 s, 00000106940344 kB] :: time step 0013000 :: write_image_to_disk 0
+[Rank 0000000, 2.622118e+03 s, 00000106940344 kB] :: time step 0013200 :: write_image_to_disk 0
+[Rank 0000000, 2.644813e+03 s, 00000106940344 kB] :: time step 0013400 :: write_image_to_disk 0
+[Rank 0000000, 2.667517e+03 s, 00000106940344 kB] :: time step 0013600 :: write_image_to_disk 0
+[Rank 0000000, 2.690213e+03 s, 00000106940344 kB] :: time step 0013800 :: write_image_to_disk 0
+[Rank 0000000, 2.712912e+03 s, 00000106940344 kB] :: time step 0014000 :: write_image_to_disk 0
+[Rank 0000000, 2.737325e+03 s, 00000106940344 kB] :: time step 0014200 :: write_image_to_disk 0
+[Rank 0000000, 2.760005e+03 s, 00000106940344 kB] :: time step 0014400 :: write_image_to_disk 0
+[Rank 0000000, 2.782694e+03 s, 00000106940344 kB] :: time step 0014600 :: write_image_to_disk 0
+[Rank 0000000, 2.805396e+03 s, 00000106940344 kB] :: time step 0014800 :: write_image_to_disk 0
+[Rank 0000000, 2.828100e+03 s, 00000106940344 kB] :: time step 0015000 :: write_image_to_disk 1
+[Rank 0000000, 2.902108e+03 s, 00000106940344 kB] :: time step 0015200 :: write_image_to_disk 0
+[Rank 0000000, 2.924631e+03 s, 00000106940344 kB] :: time step 0015400 :: write_image_to_disk 0
+[Rank 0000000, 2.947286e+03 s, 00000106940344 kB] :: time step 0015600 :: write_image_to_disk 0
+[Rank 0000000, 2.969961e+03 s, 00000106940344 kB] :: time step 0015800 :: write_image_to_disk 0
+[Rank 0000000, 2.992640e+03 s, 00000106940344 kB] :: time step 0016000 :: write_image_to_disk 0
+[Rank 0000000, 3.017053e+03 s, 00000106940344 kB] :: time step 0016200 :: write_image_to_disk 0
+[Rank 0000000, 3.039748e+03 s, 00000106940344 kB] :: time step 0016400 :: write_image_to_disk 0
+[Rank 0000000, 3.062447e+03 s, 00000106940344 kB] :: time step 0016600 :: write_image_to_disk 0
+[Rank 0000000, 3.085143e+03 s, 00000106940344 kB] :: time step 0016800 :: write_image_to_disk 0
+[Rank 0000000, 3.107846e+03 s, 00000106940344 kB] :: time step 0017000 :: write_image_to_disk 0
+[Rank 0000000, 3.132256e+03 s, 00000106940344 kB] :: time step 0017200 :: write_image_to_disk 0
+[Rank 0000000, 3.154938e+03 s, 00000106940344 kB] :: time step 0017400 :: write_image_to_disk 0
+[Rank 0000000, 3.177624e+03 s, 00000106940344 kB] :: time step 0017600 :: write_image_to_disk 0
+[Rank 0000000, 3.200309e+03 s, 00000106940344 kB] :: time step 0017800 :: write_image_to_disk 0
+[Rank 0000000, 3.222996e+03 s, 00000106940344 kB] :: time step 0018000 :: write_image_to_disk 0
+[Rank 0000000, 3.247427e+03 s, 00000106940344 kB] :: time step 0018200 :: write_image_to_disk 0
+[Rank 0000000, 3.270102e+03 s, 00000106940344 kB] :: time step 0018400 :: write_image_to_disk 0
+[Rank 0000000, 3.292775e+03 s, 00000106940344 kB] :: time step 0018600 :: write_image_to_disk 0
+[Rank 0000000, 3.315456e+03 s, 00000106940344 kB] :: time step 0018800 :: write_image_to_disk 0
+[Rank 0000000, 3.338155e+03 s, 00000106940344 kB] :: time step 0019000 :: write_image_to_disk 0
+[Rank 0000000, 3.362570e+03 s, 00000106940344 kB] :: time step 0019200 :: write_image_to_disk 0
+[Rank 0000000, 3.385256e+03 s, 00000106940344 kB] :: time step 0019400 :: write_image_to_disk 0
+[Rank 0000000, 3.407949e+03 s, 00000106940344 kB] :: time step 0019600 :: write_image_to_disk 0
+[Rank 0000000, 3.430642e+03 s, 00000106940344 kB] :: time step 0019800 :: write_image_to_disk 0
+[Rank 0000000, 3.453336e+03 s, 00000106940344 kB] :: time step 0020000 :: write_image_to_disk 1
+[Rank 0000000, 3.564576e+03 s, 00000106940416 kB] :: time step 0020200 :: write_image_to_disk 0
+[Rank 0000000, 3.587175e+03 s, 00000106940416 kB] :: time step 0020400 :: write_image_to_disk 0
+[Rank 0000000, 3.609853e+03 s, 00000106940416 kB] :: time step 0020600 :: write_image_to_disk 0
+[Rank 0000000, 3.632526e+03 s, 00000106940416 kB] :: time step 0020800 :: write_image_to_disk 0
+[Rank 0000000, 3.655194e+03 s, 00000106940416 kB] :: time step 0021000 :: write_image_to_disk 0
+[Rank 0000000, 3.679590e+03 s, 00000106940416 kB] :: time step 0021200 :: write_image_to_disk 0
+[Rank 0000000, 3.702256e+03 s, 00000106940416 kB] :: time step 0021400 :: write_image_to_disk 0
+[Rank 0000000, 3.724922e+03 s, 00000106940416 kB] :: time step 0021600 :: write_image_to_disk 0
+[Rank 0000000, 3.747595e+03 s, 00000106940416 kB] :: time step 0021800 :: write_image_to_disk 0
+[Rank 0000000, 3.770274e+03 s, 00000106940416 kB] :: time step 0022000 :: write_image_to_disk 0
+[Rank 0000000, 3.794677e+03 s, 00000106940416 kB] :: time step 0022200 :: write_image_to_disk 0
+[Rank 0000000, 3.817353e+03 s, 00000106940416 kB] :: time step 0022400 :: write_image_to_disk 0
+[Rank 0000000, 3.840049e+03 s, 00000106940416 kB] :: time step 0022600 :: write_image_to_disk 0
+[Rank 0000000, 3.862733e+03 s, 00000106940416 kB] :: time step 0022800 :: write_image_to_disk 0
+[Rank 0000000, 3.885414e+03 s, 00000106940416 kB] :: time step 0023000 :: write_image_to_disk 0
+[Rank 0000000, 3.909818e+03 s, 00000106940416 kB] :: time step 0023200 :: write_image_to_disk 0
+[Rank 0000000, 3.932491e+03 s, 00000106940416 kB] :: time step 0023400 :: write_image_to_disk 0
+[Rank 0000000, 3.955180e+03 s, 00000106940416 kB] :: time step 0023600 :: write_image_to_disk 0
+[Rank 0000000, 3.977879e+03 s, 00000106940416 kB] :: time step 0023800 :: write_image_to_disk 0
+[Rank 0000000, 4.000559e+03 s, 00000106940416 kB] :: time step 0024000 :: write_image_to_disk 0
+[Rank 0000000, 4.024965e+03 s, 00000106940416 kB] :: time step 0024200 :: write_image_to_disk 0
+[Rank 0000000, 4.047637e+03 s, 00000106940416 kB] :: time step 0024400 :: write_image_to_disk 0
+[Rank 0000000, 4.070312e+03 s, 00000106940416 kB] :: time step 0024600 :: write_image_to_disk 0
+[Rank 0000000, 4.092992e+03 s, 00000106940416 kB] :: time step 0024800 :: write_image_to_disk 0
+[Rank 0000000, 4.115673e+03 s, 00000106940416 kB] :: time step 0025000 :: write_image_to_disk 1
+[Rank 0000000, 4.189552e+03 s, 00000106940416 kB] :: time step 0025200 :: write_image_to_disk 0
+[Rank 0000000, 4.212110e+03 s, 00000106940416 kB] :: time step 0025400 :: write_image_to_disk 0
+[Rank 0000000, 4.234768e+03 s, 00000106940416 kB] :: time step 0025600 :: write_image_to_disk 0
+[Rank 0000000, 4.257438e+03 s, 00000106940416 kB] :: time step 0025800 :: write_image_to_disk 0
+[Rank 0000000, 4.280114e+03 s, 00000106940416 kB] :: time step 0026000 :: write_image_to_disk 0
+[Rank 0000000, 4.304511e+03 s, 00000106940416 kB] :: time step 0026200 :: write_image_to_disk 0
+[Rank 0000000, 4.327176e+03 s, 00000106940416 kB] :: time step 0026400 :: write_image_to_disk 0
+[Rank 0000000, 4.349849e+03 s, 00000106940416 kB] :: time step 0026600 :: write_image_to_disk 0
+[Rank 0000000, 4.372530e+03 s, 00000106940416 kB] :: time step 0026800 :: write_image_to_disk 0
+[Rank 0000000, 4.395215e+03 s, 00000106940416 kB] :: time step 0027000 :: write_image_to_disk 0
+[Rank 0000000, 4.419633e+03 s, 00000106940416 kB] :: time step 0027200 :: write_image_to_disk 0
+[Rank 0000000, 4.442304e+03 s, 00000106940416 kB] :: time step 0027400 :: write_image_to_disk 0
+[Rank 0000000, 4.464981e+03 s, 00000106940416 kB] :: time step 0027600 :: write_image_to_disk 0
+[Rank 0000000, 4.487661e+03 s, 00000106940416 kB] :: time step 0027800 :: write_image_to_disk 0
+[Rank 0000000, 4.510341e+03 s, 00000106940416 kB] :: time step 0028000 :: write_image_to_disk 0
+[Rank 0000000, 4.534752e+03 s, 00000106940416 kB] :: time step 0028200 :: write_image_to_disk 0
+[Rank 0000000, 4.557427e+03 s, 00000106940416 kB] :: time step 0028400 :: write_image_to_disk 0
+[Rank 0000000, 4.580103e+03 s, 00000106940416 kB] :: time step 0028600 :: write_image_to_disk 0
+[Rank 0000000, 4.602782e+03 s, 00000106940416 kB] :: time step 0028800 :: write_image_to_disk 0
+[Rank 0000000, 4.625459e+03 s, 00000106940416 kB] :: time step 0029000 :: write_image_to_disk 0
+[Rank 0000000, 4.649860e+03 s, 00000106940416 kB] :: time step 0029200 :: write_image_to_disk 0
+[Rank 0000000, 4.672534e+03 s, 00000106940416 kB] :: time step 0029400 :: write_image_to_disk 0
+[Rank 0000000, 4.695218e+03 s, 00000106940416 kB] :: time step 0029600 :: write_image_to_disk 0
+[Rank 0000000, 4.717905e+03 s, 00000106940416 kB] :: time step 0029800 :: write_image_to_disk 0
+[Rank 0000000, 4.740594e+03 s, 00000106940416 kB] :: time step 0030000 :: write_image_to_disk 1
+[Rank 0000000, 4.851924e+03 s, 00000106940560 kB] :: time step 0030200 :: write_image_to_disk 0
+[Rank 0000000, 4.874517e+03 s, 00000106940560 kB] :: time step 0030400 :: write_image_to_disk 0
+[Rank 0000000, 4.897190e+03 s, 00000106940560 kB] :: time step 0030600 :: write_image_to_disk 0
+[Rank 0000000, 4.919864e+03 s, 00000106940560 kB] :: time step 0030800 :: write_image_to_disk 0
+[Rank 0000000, 4.942533e+03 s, 00000106940560 kB] :: time step 0031000 :: write_image_to_disk 0
+[Rank 0000000, 4.966927e+03 s, 00000106940560 kB] :: time step 0031200 :: write_image_to_disk 0
+[Rank 0000000, 4.989595e+03 s, 00000106940560 kB] :: time step 0031400 :: write_image_to_disk 0
+[Rank 0000000, 5.012265e+03 s, 00000106940560 kB] :: time step 0031600 :: write_image_to_disk 0
+[Rank 0000000, 5.034936e+03 s, 00000106940560 kB] :: time step 0031800 :: write_image_to_disk 0
+[Rank 0000000, 5.057614e+03 s, 00000106940560 kB] :: time step 0032000 :: write_image_to_disk 0
+[Rank 0000000, 5.082019e+03 s, 00000106940560 kB] :: time step 0032200 :: write_image_to_disk 0
+[Rank 0000000, 5.104692e+03 s, 00000106940560 kB] :: time step 0032400 :: write_image_to_disk 0
+[Rank 0000000, 5.127363e+03 s, 00000106940560 kB] :: time step 0032600 :: write_image_to_disk 0
+[Rank 0000000, 5.150038e+03 s, 00000106940560 kB] :: time step 0032800 :: write_image_to_disk 0
+[Rank 0000000, 5.172724e+03 s, 00000106940560 kB] :: time step 0033000 :: write_image_to_disk 0
+[Rank 0000000, 5.197132e+03 s, 00000106940560 kB] :: time step 0033200 :: write_image_to_disk 0
+[Rank 0000000, 5.219806e+03 s, 00000106940560 kB] :: time step 0033400 :: write_image_to_disk 0
+[Rank 0000000, 5.242485e+03 s, 00000106940560 kB] :: time step 0033600 :: write_image_to_disk 0
+[Rank 0000000, 5.265165e+03 s, 00000106940560 kB] :: time step 0033800 :: write_image_to_disk 0
+[Rank 0000000, 5.287847e+03 s, 00000106940560 kB] :: time step 0034000 :: write_image_to_disk 0
+[Rank 0000000, 5.312265e+03 s, 00000106940560 kB] :: time step 0034200 :: write_image_to_disk 0
+[Rank 0000000, 5.334932e+03 s, 00000106940560 kB] :: time step 0034400 :: write_image_to_disk 0
+[Rank 0000000, 5.357605e+03 s, 00000106940560 kB] :: time step 0034600 :: write_image_to_disk 0
+[Rank 0000000, 5.380284e+03 s, 00000106940560 kB] :: time step 0034800 :: write_image_to_disk 0
+[Rank 0000000, 5.402959e+03 s, 00000106940560 kB] :: time step 0035000 :: write_image_to_disk 1
+[2026-05-25T12:04:38.005] error: *** JOB 14933 ON GPU4 CANCELLED AT 2026-05-25T12:04:38 DUE TO TIME LIMIT ***
