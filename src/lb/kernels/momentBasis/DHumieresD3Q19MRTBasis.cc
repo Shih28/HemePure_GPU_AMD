@@ -22,7 +22,7 @@ namespace hemelb
          *
          *  See publication for  meaning of e, epsilon, etc.
          */
-        const distribn_t DHumieresD3Q19MRTBasis::REDUCED_MOMENT_BASIS[DHumieresD3Q19MRTBasis::NUM_KINETIC_MOMENTS][Lattice::NUMVECTORS] =
+        const double DHumieresD3Q19MRTBasis::REDUCED_MOMENT_BASIS[DHumieresD3Q19MRTBasis::NUM_KINETIC_MOMENTS][Lattice::NUMVECTORS] =
 
         { { -30, -11, -11, -11, -11, -11, -11, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8 }, //e
           { 12, -4, -4, -4, -4, -4, -4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }, // epsilon
@@ -41,7 +41,7 @@ namespace hemelb
           { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, -1, -1, 1, -1, 1, 1, -1 } //m_z
         };
 
-        const distribn_t DHumieresD3Q19MRTBasis::BASIS_TIMES_BASIS_TRANSPOSED[NUM_KINETIC_MOMENTS] = { 2394, 252, 40,
+        const double DHumieresD3Q19MRTBasis::BASIS_TIMES_BASIS_TRANSPOSED[NUM_KINETIC_MOMENTS] = { 2394, 252, 40,
                                                                                                        40, 40, 36, 72,
                                                                                                        12, 24, 4, 4, 4,
                                                                                                        8, 8, 8 };

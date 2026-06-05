@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#SBATCH --job-name=hemepure_run_PP
+#SBATCH --job-name=hemepure_run_PPP
 #SBATCH --partition=amd
 #SBATCH --nodes=1
 #SBATCH --ntasks=2                 # rank 0 = CPU master, rank 1 = GPU worker (NGPUS+1)
@@ -19,7 +19,7 @@
 # on the node, so 1 GPU is the practical max here).
 
 # ---- choose the test case --------------------------------------------------
-CASE="${CASE:-coW-6.4um}"          # <-- testcase name; override via --export=ALL,CASE=...
+CASE="${CASE:-Aneurysm}"          # <-- testcase name; override via --export=ALL,CASE=...
 
 # ---- paths -----------------------------------------------------------------
 ROOT="/home/hpc-i/student10/HemePure_GPU_AMD"   # adjust if the repo moves

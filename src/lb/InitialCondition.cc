@@ -106,7 +106,7 @@ namespace hemelb {
 
       InitialCondition operator()(const configuration::EquilibriumIC& cfg) const {
         auto rho = cfg.unitConverter->ConvertPressureToLatticeUnits(cfg.p_mmHg) / Cs2;
-        return EquilibriumInitialCondition{cfg.t0, rho};
+        return EquilibriumInitialCondition{cfg.t0, static_cast<distribn_t>(rho)};
       }
 
       InitialCondition operator()(const configuration::CheckpointIC& cfg) const {

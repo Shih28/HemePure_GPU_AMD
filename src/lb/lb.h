@@ -224,14 +224,14 @@ namespace hemelb
 
 				// And the corresponding host vectors related to the above
 				// Replace the above with a single correction term instead of 3 components
-				std::vector<distribn_t> wallMom_correction_Inlet_Edge;
-				std::vector<distribn_t> wallMom_correction_InletWall_Edge;
-				std::vector<distribn_t> wallMom_correction_Inlet_Inner;
-				std::vector<distribn_t> wallMom_correction_InletWall_Inner;
-				std::vector<distribn_t> wallMom_correction_Outlet_Edge;
-				std::vector<distribn_t> wallMom_correction_OutletWall_Edge;
-				std::vector<distribn_t> wallMom_correction_Outlet_Inner;
-				std::vector<distribn_t> wallMom_correction_OutletWall_Inner;
+				std::vector<double> wallMom_correction_Inlet_Edge;
+				std::vector<double> wallMom_correction_InletWall_Edge;
+				std::vector<double> wallMom_correction_Inlet_Inner;
+				std::vector<double> wallMom_correction_InletWall_Inner;
+				std::vector<double> wallMom_correction_Outlet_Edge;
+				std::vector<double> wallMom_correction_OutletWall_Edge;
+				std::vector<double> wallMom_correction_Outlet_Inner;
+				std::vector<double> wallMom_correction_OutletWall_Inner;
 				//----------------------------------------------------------------------
 
 				//----------------------------------------------------------------------
@@ -249,16 +249,16 @@ namespace hemelb
 
 				// And the corresponding host vectors related to the above
 				// Replace the above with a single correction term instead of 3 components
-				std::vector<distribn_t> wallMom_correction_Inlet_Edge_Direct;
-				std::vector<distribn_t> wallMom_correction_InletWall_Edge_Direct;
-				std::vector<distribn_t> wallMom_correction_Inlet_Inner_Direct;
-				std::vector<distribn_t> wallMom_correction_InletWall_Inner_Direct;
-				std::vector<distribn_t> wallMom_correction_Outlet_Edge_Direct;
-				std::vector<distribn_t> wallMom_correction_OutletWall_Edge_Direct;
-				std::vector<distribn_t> wallMom_correction_Outlet_Inner_Direct;
-				std::vector<distribn_t> wallMom_correction_OutletWall_Inner_Direct;
+				std::vector<double> wallMom_correction_Inlet_Edge_Direct;
+				std::vector<double> wallMom_correction_InletWall_Edge_Direct;
+				std::vector<double> wallMom_correction_Inlet_Inner_Direct;
+				std::vector<double> wallMom_correction_InletWall_Inner_Direct;
+				std::vector<double> wallMom_correction_Outlet_Edge_Direct;
+				std::vector<double> wallMom_correction_OutletWall_Edge_Direct;
+				std::vector<double> wallMom_correction_Outlet_Inner_Direct;
+				std::vector<double> wallMom_correction_OutletWall_Inner_Direct;
 
-				std::vector<distribn_t> wallMom_correction_ColType_Domain_Direct;
+				std::vector<double> wallMom_correction_ColType_Domain_Direct;
 				//----------------------------------------------------------------------
 
 				//----------------------------------------------------------------------
@@ -278,16 +278,16 @@ namespace hemelb
 
 				// And the corresponding host vectors related to the above
 				// Replace the above with a single correction term instead of 3 components
-				std::vector<distribn_t> wallMom_prefactor_correction_Inlet_Edge;
-				std::vector<distribn_t> wallMom_prefactor_correction_InletWall_Edge;
-				std::vector<distribn_t> wallMom_prefactor_correction_Inlet_Inner;
-				std::vector<distribn_t> wallMom_prefactor_correction_InletWall_Inner;
-				std::vector<distribn_t> wallMom_prefactor_correction_Outlet_Edge;
-				std::vector<distribn_t> wallMom_prefactor_correction_OutletWall_Edge;
-				std::vector<distribn_t> wallMom_prefactor_correction_Outlet_Inner;
-				std::vector<distribn_t> wallMom_prefactor_correction_OutletWall_Inner;
+				std::vector<double> wallMom_prefactor_correction_Inlet_Edge;
+				std::vector<double> wallMom_prefactor_correction_InletWall_Edge;
+				std::vector<double> wallMom_prefactor_correction_Inlet_Inner;
+				std::vector<double> wallMom_prefactor_correction_InletWall_Inner;
+				std::vector<double> wallMom_prefactor_correction_Outlet_Edge;
+				std::vector<double> wallMom_prefactor_correction_OutletWall_Edge;
+				std::vector<double> wallMom_prefactor_correction_Outlet_Inner;
+				std::vector<double> wallMom_prefactor_correction_OutletWall_Inner;
 
-				std::vector<distribn_t> wallMom_prefactor_correction_ColType_Domain;
+				std::vector<double> wallMom_prefactor_correction_ColType_Domain;
 				//----------------------------------------------------------------------
 
 				//----------------------------------------------------------------------

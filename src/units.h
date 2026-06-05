@@ -34,21 +34,23 @@ namespace hemelb
   // the type name should reflect the dimensionality and the base of the units
 
   typedef double PhysicalDensity;
-  typedef distribn_t LatticeDensity;
+  // Physical lattice quantities are kept in double precision on the host even
+  // though the GPU distribution functions (distribn_t) are stored as float.
+  typedef double LatticeDensity;
   typedef float ScreenDensity;
 
   typedef double PhysicalPressure;
-  typedef distribn_t LatticePressure;
+  typedef double LatticePressure;
 
   typedef double PhysicalStress;
-  typedef distribn_t LatticeStress;
+  typedef double LatticeStress;
   typedef float ScreenStress;
 
   typedef unsigned long LatticeTimeStep; // lattice time steps.
   typedef double LatticeTime;
   typedef double PhysicalTime; // seconds
 
-  typedef distribn_t LatticeReciprocalTime; ///< 1/timestep
+  typedef double LatticeReciprocalTime; ///< 1/timestep
   typedef double PhysicalReciprocalTime; ///< 1/seconds
 
   typedef double PhysicalMass; // kilograms

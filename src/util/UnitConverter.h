@@ -108,7 +108,7 @@ namespace hemelb
           // convert velocity from lattice units to physical units (m/s)
           return velocity * latticeSpeed;
         }
-        double ConvertPressureDifferenceToPhysicalUnits(distribn_t pressure_grad) const;
+        double ConvertPressureDifferenceToPhysicalUnits(LatticePressure pressure_grad) const;
 
         LatticeTime ConvertTimeToLatticeUnits(const PhysicalTime& t) const;
         PhysicalTime ConvertTimeToPhysicalUnits(const LatticeTime& t) const;

@@ -227,7 +227,7 @@ if (USE_HIP)
  #    set( HIP_RUNTIME "rocclr" )
  #    mi50   mi100  mi200
 	if( NOT AMDGPU_TARGETS )
-      set( AMDGPU_TARGETS gfx906;gfx908;gfx90a
+      set( AMDGPU_TARGETS gfx906;gfx908;gfx90a;gfx1201
    		    CACHE STRING "List of specific machine types for library to target" )
 	endif()
   endif()

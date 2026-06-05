@@ -395,7 +395,7 @@ namespace hemelb
 										{
 											//std::vector<distribn_t> result_wallMom_correction_Direct_tobePassed;
 
-											std::vector<distribn_t> result_wallMom_correction_Direct;
+											std::vector<double> result_wallMom_correction_Direct;
 											result_wallMom_correction_Direct.reserve(siteCount*LatticeType::NUMVECTORS);
 
 											// This needs to change - The type should be just a single array
@@ -469,7 +469,7 @@ namespace hemelb
 																	std::vector<double>& wallMom_prefactor_correction_Iolet)
 											{
 
-												std::vector<distribn_t> result_wallMom_prefactor_correction_Direct;
+												std::vector<double> result_wallMom_prefactor_correction_Direct;
 												result_wallMom_prefactor_correction_Direct.reserve(siteCount*LatticeType::NUMVECTORS);
 
 												// This needs to change - The type should be just a single array
@@ -824,7 +824,7 @@ namespace hemelb
 										result_wallMom_correction_Direct_tobePassed.reserve(siteCount*LatticeType::NUMVECTORS);
 										*/
 
-										std::vector<distribn_t> result_wallMom_correction_Direct;
+										std::vector<double> result_wallMom_correction_Direct;
 										result_wallMom_correction_Direct.reserve(siteCount*LatticeType::NUMVECTORS);
 
 										// This needs to change - The type should be just a single array
@@ -876,7 +876,7 @@ namespace hemelb
 																std::vector<double>& wallMom_prefactor_correction_Iolet)
 										{
 
-											std::vector<distribn_t> result_wallMom_prefactor_correction_Direct;
+											std::vector<double> result_wallMom_prefactor_correction_Direct;
 											result_wallMom_prefactor_correction_Direct.reserve(siteCount*LatticeType::NUMVECTORS);
 
 											double wallMom_prefactor_correction_received;

@@ -295,19 +295,19 @@ __constant__ hemelb::site_t _Iolets_OutletWall_Edge[local_iolets_MaxSIZE];
 __constant__ hemelb::site_t _Iolets_Outlet_Inner[local_iolets_MaxSIZE];
 __constant__ hemelb::site_t _Iolets_OutletWall_Inner[local_iolets_MaxSIZE];
 __constant__ unsigned int _NUMVECTORS;
-__constant__ distribn_t dev_tau;
-__constant__ distribn_t dev_minusInvTau;
-__constant__ distribn_t _Cs2;
+__constant__ hemelb::distribn_t dev_tau;
+__constant__ hemelb::distribn_t dev_minusInvTau;
+__constant__ hemelb::distribn_t _Cs2;
 __constant__ bool _useWeightsFromFile;
-__constant__ distribn_t _iStressParameter;
+__constant__ hemelb::distribn_t _iStressParameter;
 __constant__ int _InvDirections_19[19];
-__device__ __constant__ distribn_t _EQMWEIGHTS_19[19];
+__device__ __constant__ hemelb::distribn_t _EQMWEIGHTS_19[19];
 __constant__ int _CX_19[19];
 __constant__ int _CY_19[19];
 __constant__ int _CZ_19[19];
 __constant__ int _WriteStep = 100;
 __constant__ int _Send_MacroVars_DtH = 100;
-__constant__ distribn_t dev_smag_cnst;
+__constant__ hemelb::distribn_t dev_smag_cnst;
 #endif
 
 

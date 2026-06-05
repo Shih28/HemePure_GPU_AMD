@@ -203,7 +203,7 @@ distribn_t* LBM<LatticeType>::WallShearStressMagn_Inner_Type6_GPU = nullptr;
 			void LBM<LatticeType>::PrepareBoundaryObjects()
 			{
 				// First, iterate through all of the inlet and outlet objects, finding out the minimum density seen in the simulation.
-				distribn_t minDensity = std::numeric_limits<distribn_t>::max();
+				LatticeDensity minDensity = std::numeric_limits<LatticeDensity>::max();
 
 				for (unsigned inlet = 0; inlet < mInletValues->GetLocalIoletCount(); ++inlet)
 				{

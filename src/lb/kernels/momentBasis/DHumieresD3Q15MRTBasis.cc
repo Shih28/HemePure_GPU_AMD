@@ -22,7 +22,7 @@ namespace hemelb
          *
          *  See publication for  meaning of e, epsilon, etc.
          */
-        const distribn_t DHumieresD3Q15MRTBasis::REDUCED_MOMENT_BASIS[DHumieresD3Q15MRTBasis::NUM_KINETIC_MOMENTS][Lattice::NUMVECTORS] =
+        const double DHumieresD3Q15MRTBasis::REDUCED_MOMENT_BASIS[DHumieresD3Q15MRTBasis::NUM_KINETIC_MOMENTS][Lattice::NUMVECTORS] =
             { { -2, -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1 }, // e
               { 16, -4, -4, -4, -4, -4, -4, 1, 1, 1, 1, 1, 1, 1, 1 }, // epsilon
               { 0, -4, 4, 0, 0, 0, 0, 1, -1, 1, -1, 1, -1, 1, -1 }, // q_x
@@ -36,7 +36,7 @@ namespace hemelb
               { 0, 0, 0, 0, 0, 0, 0, 1, -1, -1, 1, -1, 1, 1, -1 } // m_xyz
             };
 
-        const distribn_t DHumieresD3Q15MRTBasis::BASIS_TIMES_BASIS_TRANSPOSED[NUM_KINETIC_MOMENTS] =
+        const double DHumieresD3Q15MRTBasis::BASIS_TIMES_BASIS_TRANSPOSED[NUM_KINETIC_MOMENTS] =
             { 18., 360., 40., 40., 40., 12., 4., 8., 8., 8., 8. };
 
         void DHumieresD3Q15MRTBasis::ProjectVelsIntoMomentSpace(const distribn_t * const velDistributions,

@@ -44,10 +44,14 @@ namespace hemelb
       return GenerateTypeForVector<site_t> ();
     }
 
+    // Vector3D<distribn_t> is now the same type as Vector3D<float> (distribn_t
+    // is float), so its instantiation lives in the Vector3D<float> one above.
+    // We still need Vector3D<double> for the physical-precision vectors
+    // (traction, wall normals, forces, positions, ...).
     template<>
-    MPI_Datatype MpiDataTypeTraits<hemelb::util::Vector3D<distribn_t> >::RegisterMpiDataType()
+    MPI_Datatype MpiDataTypeTraits<hemelb::util::Vector3D<double> >::RegisterMpiDataType()
     {
-      return GenerateTypeForVector<distribn_t> ();
+      return GenerateTypeForVector<double> ();
     }
   }
   namespace util

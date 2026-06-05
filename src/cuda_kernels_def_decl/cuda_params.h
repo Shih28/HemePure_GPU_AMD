@@ -22,19 +22,19 @@ extern __constant__ hemelb::site_t _Iolets_OutletWall_Edge[local_iolets_MaxSIZE]
 extern __constant__ hemelb::site_t _Iolets_Outlet_Inner[local_iolets_MaxSIZE];
 extern __constant__ hemelb::site_t _Iolets_OutletWall_Inner[local_iolets_MaxSIZE];
 extern __constant__ unsigned int _NUMVECTORS;
-extern __constant__ distribn_t dev_tau;
-extern __constant__ distribn_t dev_minusInvTau;
+extern __constant__ hemelb::distribn_t dev_tau;
+extern __constant__ hemelb::distribn_t dev_minusInvTau;
 extern __constant__ int _InvDirections_19[19];
-extern __device__ __constant__ distribn_t _EQMWEIGHTS_19[19];
+extern __device__ __constant__ hemelb::distribn_t _EQMWEIGHTS_19[19];
 extern __constant__ int _CX_19[19];
 extern __constant__ int _CY_19[19];
 extern __constant__ int _CZ_19[19];
-extern __constant__ distribn_t _Cs2;
+extern __constant__ hemelb::distribn_t _Cs2;
 extern __constant__ bool _useWeightsFromFile;
-extern __constant__ distribn_t _iStressParameter;
+extern __constant__ hemelb::distribn_t _iStressParameter;
 extern __constant__ int _WriteStep;
 extern __constant__ int _Send_MacroVars_DtH;
-extern __constant__ distribn_t dev_smag_cnst;
+extern __constant__ hemelb::distribn_t dev_smag_cnst;
 
 namespace hemelb
 {
@@ -106,7 +106,7 @@ namespace hemelb
 	//	Kernels for Velocity & Pressure BCs:
 	// Pressure BCs (NASHZEROTHORDERPRESSUREIOLET):
 	__global__ void GPU_CollideStream_Iolets_NashZerothOrderPressure_v2(distribn_t* GMem_dbl_fOld_b, distribn_t* GMem_dbl_fNew_b, distribn_t* GMem_dbl_MacroVars,
-																																			int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, double* GMem_ghostDensity,
+																																			int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, distribn_t* GMem_ghostDensity,
 																																			float* GMem_inletNormal, int nInlets, uint64_t nArr_dbl,uint64_t lower_limit, uint64_t upper_limit,
 																																			uint64_t totalSharedFs, bool write_GlobalMem, int num_local_Iolets, site_t* GMem_Iolets_info);
 
@@ -114,7 +114,7 @@ namespace hemelb
 	__global__
 	void GPU_CollideStream_Iolets_NashZerothOrderPressure_v2(
 		distribn_t* GMem_dbl_fOld_b, distribn_t* GMem_dbl_fNew_b, distribn_t* GMem_dbl_MacroVars,
-		int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, double* GMem_ghostDensity,
+		int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, distribn_t* GMem_ghostDensity,
 		float* GMem_inletNormal, int nInlets, uint64_t nArr_dbl,uint64_t lower_limit, uint64_t upper_limit,
 		uint64_t totalSharedFs, bool write_GlobalMem, int num_local_Iolets, site_t* GMem_Iolets_info,
 		unsigned long time_Step, distribn_t* GMem_dbl_vTau, unsigned long int SL_lifetime
@@ -122,7 +122,7 @@ namespace hemelb
 
 
 	__global__ void GPU_CollideStream_Iolets_NashZerothOrderPressure(distribn_t* GMem_dbl_fOld_b, distribn_t* GMem_dbl_fNew_b, distribn_t* GMem_dbl_MacroVars,
-																																		int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, double* GMem_ghostDensity,
+																																		int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, distribn_t* GMem_ghostDensity,
 																																		float* GMem_inletNormal, int nInlets, uint64_t nArr_dbl,uint64_t lower_limit, uint64_t upper_limit,
 																																		uint64_t totalSharedFs, bool write_GlobalMem, int num_local_Iolets, Iolets Iolets_info);
 
@@ -130,7 +130,7 @@ namespace hemelb
 	__global__
 	void GPU_CollideStream_Iolets_NashZerothOrderPressure(
 		distribn_t* GMem_dbl_fOld_b, distribn_t* GMem_dbl_fNew_b, distribn_t* GMem_dbl_MacroVars,
-		int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, double* GMem_ghostDensity,
+		int64_t* GMem_int64_Neigh, uint32_t* GMem_uint32_Iolet_Link, distribn_t* GMem_ghostDensity,
 		float* GMem_inletNormal, int nInlets, uint64_t nArr_dbl,uint64_t lower_limit, uint64_t upper_limit,
 		uint64_t totalSharedFs, bool write_GlobalMem, int num_local_Iolets, Iolets Iolets_info,
 		unsigned long time_Step, distribn_t* GMem_dbl_vTau, unsigned long int SL_lifetime
@@ -407,7 +407,7 @@ struct structSecMomDistrFun
 	* @return second moment of the distribution function f
 	* using the array declared in structure
 	*/
-__device__ __forceinline__ struct structSecMomDistrFun _structCalculatePiTensor(const distribn_t* const f) //return type is struct structSecMomDistrFun
+__device__ __forceinline__ struct structSecMomDistrFun _structCalculatePiTensor(const double* const f) //return type is struct structSecMomDistrFun
 {
 	struct structSecMomDistrFun ret_SecMomDistrFunc; //demo structure member declared
 
@@ -473,7 +473,7 @@ __device__ __forceinline__ struct structSecMomDistrFun _structCalculatePiTensor(
 	* 	using a pointer to the array.
 	* 		Note that the array needs to be declared as static, otherwise compiling issues might occur
 	*/
-	__device__ __forceinline__ double *_CalculatePiTensor(const distribn_t* const f)
+	__device__ __forceinline__ double *_CalculatePiTensor(const double* const f)
 	{
 			static double ret_SecMomDistrFunc[6]; // Needs to be static
 
@@ -543,7 +543,7 @@ __device__ __forceinline__ struct structSecMomDistrFun _structCalculatePiTensor(
 //==============================================================================
 
 	__device__ __forceinline__ double _CalculateWallShearStressMagnitude(const distribn_t density,
-			const distribn_t* const f_neq,
+			const double* const f_neq,
 			const double normal_x, const double normal_y, const double normal_z,
 			const double &iStressParameter)
 	{
@@ -653,7 +653,7 @@ __device__ __forceinline__ struct structSecMomDistrFun _structCalculatePiTensor(
 	__device__ __forceinline__ double _Compute_tau_smagorinsky(
 		const distribn_t tau0,
 		const distribn_t smag_cnst,
-		const distribn_t* const f_neq)
+		const double* const f_neq)
 	{
 		/*double localTau;
 
@@ -921,7 +921,7 @@ __device__ __forceinline__ struct structSecMomDistrFun _structCalculatePiTensor(
 		const distribn_t vTau_local,
 		const unsigned long timeStep,
 		const unsigned long lifetime,
-		const distribn_t* const f_neq)
+		const double* const f_neq)
 	{
 
 		/*double ret_tau; // The relaxation time to be returned
