@@ -64,7 +64,7 @@ namespace hemelb
 __global__ void GPU_CollideStream_Iolets_Ladd_VelBCs(distribn_t* GMem_dbl_fOld_b,
 															distribn_t* GMem_dbl_fNew_b,
 															distribn_t* GMem_dbl_MacroVars,
-															int64_t* GMem_int64_Neigh,
+															int32_t* GMem_int64_Neigh,
 															uint32_t* GMem_uint32_Iolet_Link,
 															uint64_t nArr_dbl,
 															distribn_t* GMem_dbl_WallMom, uint64_t nArr_wallMom,
@@ -243,7 +243,7 @@ __global__ void GPU_CollideStream_Iolets_Ladd_VelBCs(distribn_t* GMem_dbl_fOld_b
 		else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 			// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-			int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+			int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 			// Save the post collision population in fNew
 			GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -304,7 +304,7 @@ void GPU_CollideStream_Iolets_Ladd_VelBCs(
 	distribn_t* GMem_dbl_fOld_b,
 	distribn_t* GMem_dbl_fNew_b,
 	distribn_t* GMem_dbl_MacroVars,
-	int64_t* GMem_int64_Neigh,
+	int32_t* GMem_int64_Neigh,
 	uint32_t* GMem_uint32_Iolet_Link,
 	uint64_t nArr_dbl,
 	distribn_t* GMem_dbl_WallMom, uint64_t nArr_wallMom,
@@ -509,7 +509,7 @@ void GPU_CollideStream_Iolets_Ladd_VelBCs(
 		else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 			// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-			int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+			int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 			// Save the post collision population in fNew
 			GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -572,7 +572,7 @@ void GPU_CollideStream_Iolets_NashZerothOrderPressure(
 	distribn_t* GMem_dbl_fOld_b,
 	distribn_t* GMem_dbl_fNew_b,
 	distribn_t* GMem_dbl_MacroVars,
-	int64_t* GMem_int64_Neigh,
+	int32_t* GMem_int64_Neigh,
 	uint32_t* GMem_uint32_Iolet_Link,
 	distribn_t* GMem_ghostDensity,
 	float* GMem_inletNormal,
@@ -686,7 +686,7 @@ void GPU_CollideStream_Iolets_NashZerothOrderPressure(
 	// d. The inletNormal
 
 	// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-	//int64_t dev_NeighInd[19];
+	//int32_t dev_NeighInd[19];
 
 	// printf("Number of inlets: %d \n\n", nInlets);
 	distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -801,7 +801,7 @@ void GPU_CollideStream_Iolets_NashZerothOrderPressure(
 		else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 			// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-			int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+			int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 			// Save the post collision population in fNew
 			GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -856,7 +856,7 @@ void GPU_CollideStream_Iolets_NashZerothOrderPressure(
 __global__ void GPU_CollideStream_Iolets_NashZerothOrderPressure(distribn_t* GMem_dbl_fOld_b,
 															distribn_t* GMem_dbl_fNew_b,
 															distribn_t* GMem_dbl_MacroVars,
-															int64_t* GMem_int64_Neigh,
+															int32_t* GMem_int64_Neigh,
 															uint32_t* GMem_uint32_Iolet_Link,
 															distribn_t* GMem_ghostDensity,
 															float* GMem_inletNormal,
@@ -953,7 +953,7 @@ __global__ void GPU_CollideStream_Iolets_NashZerothOrderPressure(distribn_t* GMe
 	// d. The inletNormal
 
 	// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-	//int64_t dev_NeighInd[19];
+	//int32_t dev_NeighInd[19];
 
 	// printf("Number of inlets: %d \n\n", nInlets);
 	distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -1068,7 +1068,7 @@ __global__ void GPU_CollideStream_Iolets_NashZerothOrderPressure(distribn_t* GMe
 		else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 			// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-			int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+			int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 			// Save the post collision population in fNew
 			GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -1128,7 +1128,7 @@ void GPU_CollideStream_Iolets_NashZerothOrderPressure_v2(
 	distribn_t* GMem_dbl_fOld_b,
 	distribn_t* GMem_dbl_fNew_b,
 	distribn_t* GMem_dbl_MacroVars,
-	int64_t* GMem_int64_Neigh,
+	int32_t* GMem_int64_Neigh,
 	uint32_t* GMem_uint32_Iolet_Link,
 	distribn_t* GMem_ghostDensity,
 	float* GMem_inletNormal,
@@ -1236,7 +1236,7 @@ for (int i = 0; i < _NUMVECTORS; ++i)
 // d. The inletNormal
 
 // a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-//int64_t dev_NeighInd[19];
+//int32_t dev_NeighInd[19];
 
 // printf("Number of inlets: %d \n\n", nInlets);
 distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -1367,7 +1367,7 @@ for (int LB_Dir = 0; LB_Dir < _NUMVECTORS; LB_Dir++)
 	else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 		// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-		int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+		int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 		// Save the post collision population in fNew
 		GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -1421,7 +1421,7 @@ if (write_GlobalMem){
 __global__ void GPU_CollideStream_Iolets_NashZerothOrderPressure_v2(distribn_t* GMem_dbl_fOld_b,
 														distribn_t* GMem_dbl_fNew_b,
 														distribn_t* GMem_dbl_MacroVars,
-														int64_t* GMem_int64_Neigh,
+														int32_t* GMem_int64_Neigh,
 														uint32_t* GMem_uint32_Iolet_Link,
 														distribn_t* GMem_ghostDensity,
 														float* GMem_inletNormal,
@@ -1517,7 +1517,7 @@ for (int i = 0; i < _NUMVECTORS; ++i)
 // d. The inletNormal
 
 // a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-//int64_t dev_NeighInd[19];
+//int32_t dev_NeighInd[19];
 
 // printf("Number of inlets: %d \n\n", nInlets);
 distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -1648,7 +1648,7 @@ for (int LB_Dir = 0; LB_Dir < _NUMVECTORS; LB_Dir++)
 	else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 		// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-		int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+		int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 		// Save the post collision population in fNew
 		GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -1707,7 +1707,7 @@ if (write_GlobalMem){
 	__global__ void GPU_CollideStream_3_NashZerothOrderPressure(distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
 																float* GMem_inletNormal,
@@ -1804,7 +1804,7 @@ if (write_GlobalMem){
 
 
 		// a. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		// printf("Number of inlets: %d \n\n", nInlets);
 		distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -1971,7 +1971,7 @@ if (write_GlobalMem){
 	__global__ void GPU_CollideStream_3_NashZerothOrderPressure_new(distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
 																float* GMem_inletNormal,
@@ -2064,7 +2064,7 @@ if (write_GlobalMem){
 		// d. The inletNormal
 
 		// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-		//int64_t dev_NeighInd[19];
+		//int32_t dev_NeighInd[19];
 
 		// printf("Number of inlets: %d \n\n", nInlets);
 		distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -2176,7 +2176,7 @@ if (write_GlobalMem){
 			else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 				// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 				// Save the post collision population in fNew
 				GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -2227,7 +2227,7 @@ if (write_GlobalMem){
 	__global__ void GPU_CollideStream_3_NashZerothOrderPressure_Inlet_Inner(distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
 																float* GMem_inletNormal,
@@ -2320,7 +2320,7 @@ if (write_GlobalMem){
 		// d. The inletNormal
 
 		// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-		//int64_t dev_NeighInd[19];
+		//int32_t dev_NeighInd[19];
 
 		// printf("Number of inlets: %d \n\n", nInlets);
 		distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -2434,7 +2434,7 @@ if (write_GlobalMem){
 			else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 				// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 				// Save the post collision population in fNew
 				GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -2484,7 +2484,7 @@ if (write_GlobalMem){
 	__global__ void GPU_CollideStream_3_NashZerothOrderPressure_Inlet_Edge(distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
 																float* GMem_inletNormal,
@@ -2577,7 +2577,7 @@ if (write_GlobalMem){
 		// d. The inletNormal
 
 		// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-		//int64_t dev_NeighInd[19];
+		//int32_t dev_NeighInd[19];
 
 		// printf("Number of inlets: %d \n\n", nInlets);
 		distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -2691,7 +2691,7 @@ if (write_GlobalMem){
 			else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 				// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 				// Save the post collision population in fNew
 				GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -2742,7 +2742,7 @@ if (write_GlobalMem){
 	__global__ void GPU_CollideStream_3_NashZerothOrderPressure_Outlet_Inner(distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
 																float* GMem_inletNormal,
@@ -2835,7 +2835,7 @@ if (write_GlobalMem){
 		// d. The inletNormal
 
 		// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-		//int64_t dev_NeighInd[19];
+		//int32_t dev_NeighInd[19];
 
 		// printf("Number of inlets: %d \n\n", nInlets);
 		distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -2949,7 +2949,7 @@ if (write_GlobalMem){
 			else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 				// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 				// Save the post collision population in fNew
 				GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];
@@ -2998,7 +2998,7 @@ if (write_GlobalMem){
 	__global__ void GPU_CollideStream_3_NashZerothOrderPressure_Outlet_Edge(distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
 																float* GMem_inletNormal,
@@ -3091,7 +3091,7 @@ if (write_GlobalMem){
 		// d. The inletNormal
 
 		// a. Bulk Streaming indices: dev_NeighInd[19] here refers to the ACTUAL Streaming Array index (Data Address) in f_old and f_new
-		//int64_t dev_NeighInd[19];
+		//int32_t dev_NeighInd[19];
 
 		// printf("Number of inlets: %d \n\n", nInlets);
 		distribn_t ghost_dens; // = 0.0; //new distribn_t[nInlets];	// c. The ghost density
@@ -3205,7 +3205,7 @@ if (write_GlobalMem){
 			else{ // bulkLinkDelegate.StreamLink(lbmParams, latDat, site, hydroVars, ii);
 
 				// Use the Neighbouring Index given in GPUDataAddr_int64_Neigh_d, which is the actual streaming Array Index in f_new global memory
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 				// Save the post collision population in fNew
 				GMem_dbl_fNew_b[dev_NeighInd] = dev_ff[LB_Dir];

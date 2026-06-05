@@ -1747,7 +1747,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 	__global__ void GPU_CollideStream_mMidFluidCollision_mWallCollision_sBB_WallShearStress(distribn_t* GMem_dbl_fOld_b,
 										distribn_t* GMem_dbl_fNew_b,
 										distribn_t* GMem_dbl_MacroVars,
-										site_t* GMem_int64_Neigh,
+										int32_t* GMem_int64_Neigh,
 										uint32_t* GMem_uint32_Wall_Link,
 										site_t nArr_dbl,
 										site_t lower_limit_MidFluid, site_t upper_limit_MidFluid,
@@ -1898,7 +1898,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 
 #pragma unroll 18
 		for(int LB_Dir=1; LB_Dir< _NUMVECTORS; LB_Dir++){
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Is there a performance gain in choosing Option 1 over Option 2 or Option 3 below???
 				// Option 1:
@@ -1941,7 +1941,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 					// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
 					// (remember the memory layout in hemeLB is based on the site fluid index, i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 					// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 					// fNew populations:
@@ -1954,7 +1954,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 		else
 		{
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 					if(dev_NeighInd == (nArr_dbl * _NUMVECTORS)) // Wall Link
 					{
@@ -2054,7 +2054,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 	__global__ void GPU_CollideStream_mMidFluidCollision_mWallCollision_sBB_WallShearStress(distribn_t* GMem_dbl_fOld_b,
 										distribn_t* GMem_dbl_fNew_b,
 										distribn_t* GMem_dbl_MacroVars,
-										site_t* GMem_int64_Neigh,
+										int32_t* GMem_int64_Neigh,
 										uint32_t* GMem_uint32_Wall_Link,
 										site_t nArr_dbl,
 										site_t lower_limit_MidFluid, site_t upper_limit_MidFluid,
@@ -2190,7 +2190,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 
 	#pragma unroll 18
 		for(int LB_Dir=1; LB_Dir< _NUMVECTORS; LB_Dir++){
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Is there a performance gain in choosing Option 1 over Option 2 or Option 3 below???
 				// Option 1:
@@ -2233,7 +2233,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 					// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
 					// (remember the memory layout in hemeLB is based on the site fluid index, i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 					// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 					// fNew populations:
@@ -2246,7 +2246,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 		else
 		{
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 					if(dev_NeighInd == (nArr_dbl * _NUMVECTORS)) // Wall Link
 					{
@@ -2336,7 +2336,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 	__global__ void GPU_CollideStream_mMidFluidCollision_mWallCollision_sBB(distribn_t* GMem_dbl_fOld_b,
 										distribn_t* GMem_dbl_fNew_b,
 										distribn_t* GMem_dbl_MacroVars,
-										site_t* GMem_int64_Neigh,
+										int32_t* GMem_int64_Neigh,
 										uint32_t* GMem_uint32_Wall_Link,
 										site_t nArr_dbl,
 										site_t lower_limit_MidFluid, site_t upper_limit_MidFluid,
@@ -2477,7 +2477,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 
 #pragma unroll 18
 		for(int LB_Dir=1; LB_Dir< _NUMVECTORS; LB_Dir++){
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Is there a performance gain in choosing Option 1 over Option 2 or Option 3 below???
 				// Option 1:
@@ -2520,7 +2520,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 					// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
 					// (remember the memory layout in hemeLB is based on the site fluid index, i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind];
 
 					// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 					// fNew populations:
@@ -2533,7 +2533,7 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 		else
 		{
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Neighbouring index refers to the index to be streamed to in the global memory. Here it Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 					if(dev_NeighInd == (nArr_dbl * _NUMVECTORS)) // Wall Link
 					{

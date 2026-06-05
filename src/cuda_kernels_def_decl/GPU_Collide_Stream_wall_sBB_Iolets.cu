@@ -44,7 +44,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -169,7 +169,7 @@ namespace hemelb
 
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -299,7 +299,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_new(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -444,7 +444,7 @@ namespace hemelb
 /*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -518,7 +518,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -563,7 +563,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_Inlet_Edge(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -708,7 +708,7 @@ namespace hemelb
 /*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -782,7 +782,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -826,7 +826,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_Inlet_Inner(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -971,7 +971,7 @@ namespace hemelb
 /*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -1045,7 +1045,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -1090,7 +1090,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_Outlet_Edge(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -1235,7 +1235,7 @@ namespace hemelb
 /*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -1309,7 +1309,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -1355,7 +1355,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_Outlet_Inner(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -1500,7 +1500,7 @@ namespace hemelb
 /*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -1574,7 +1574,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -1622,7 +1622,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -1770,7 +1770,7 @@ namespace hemelb
 /*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -1845,7 +1845,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -1893,7 +1893,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_v2(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -2056,7 +2056,7 @@ namespace hemelb
 	/*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -2131,7 +2131,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -2185,7 +2185,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_Iolets_Ladd_VelBCs(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																uint64_t nArr_dbl,
@@ -2292,7 +2292,7 @@ namespace hemelb
 	/*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -2383,7 +2383,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -2443,7 +2443,7 @@ namespace hemelb
 			distribn_t* GMem_dbl_fOld_b,
 			distribn_t* GMem_dbl_fNew_b,
 			distribn_t* GMem_dbl_MacroVars,
-			int64_t* GMem_int64_Neigh,
+			int32_t* GMem_int64_Neigh,
 			uint32_t* GMem_uint32_Wall_Link,
 			uint32_t* GMem_uint32_Iolet_Link,
 			distribn_t* GMem_ghostDensity,
@@ -2604,7 +2604,7 @@ namespace hemelb
 		/*
 			//------------------------------------------
 			// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-			int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+			int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 				// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -2679,7 +2679,7 @@ namespace hemelb
 					// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 					// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 					// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 					// fNew populations:
@@ -2752,7 +2752,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_WallShearStress(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -2935,7 +2935,7 @@ namespace hemelb
 	/*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -3010,7 +3010,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -3089,7 +3089,7 @@ namespace hemelb
 			distribn_t* GMem_dbl_fOld_b,
 			distribn_t* GMem_dbl_fNew_b,
 			distribn_t* GMem_dbl_MacroVars,
-			int64_t* GMem_int64_Neigh,
+			int32_t* GMem_int64_Neigh,
 			uint32_t* GMem_uint32_Wall_Link,
 			uint32_t* GMem_uint32_Iolet_Link,
 			distribn_t* GMem_ghostDensity,
@@ -3263,7 +3263,7 @@ namespace hemelb
 		/*
 			//------------------------------------------
 			// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-			int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+			int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 				// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -3338,7 +3338,7 @@ namespace hemelb
 					// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 					// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 					// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 					// fNew populations:
@@ -3410,7 +3410,7 @@ namespace hemelb
 	__global__ void GPU_CollideStream_wall_sBB_iolet_Nash_v2_WallShearStress(	distribn_t* GMem_dbl_fOld_b,
 																distribn_t* GMem_dbl_fNew_b,
 																distribn_t* GMem_dbl_MacroVars,
-																int64_t* GMem_int64_Neigh,
+																int32_t* GMem_int64_Neigh,
 																uint32_t* GMem_uint32_Wall_Link,
 																uint32_t* GMem_uint32_Iolet_Link,
 																distribn_t* GMem_ghostDensity,
@@ -3606,7 +3606,7 @@ namespace hemelb
 	/*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -3681,7 +3681,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
@@ -3762,7 +3762,7 @@ namespace hemelb
 				distribn_t* GMem_dbl_fOld_b,
 				distribn_t* GMem_dbl_fNew_b,
 				distribn_t* GMem_dbl_MacroVars,
-				int64_t* GMem_int64_Neigh,
+				int32_t* GMem_int64_Neigh,
 				uint32_t* GMem_uint32_Wall_Link,
 				uint32_t* GMem_uint32_Iolet_Link,
 				uint64_t nArr_dbl,
@@ -3871,7 +3871,7 @@ namespace hemelb
 		/*
 			//------------------------------------------
 			// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-			int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+			int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 			for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 				// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -3963,7 +3963,7 @@ namespace hemelb
 					// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 					// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-					int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+					int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 					// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 					// fNew populations:
@@ -4036,7 +4036,7 @@ namespace hemelb
 			distribn_t* GMem_dbl_fOld_b,
 			distribn_t* GMem_dbl_fNew_b,
 			distribn_t* GMem_dbl_MacroVars,
-			int64_t* GMem_int64_Neigh,
+			int32_t* GMem_int64_Neigh,
 			uint32_t* GMem_uint32_Wall_Link,
 			uint32_t* GMem_uint32_Iolet_Link,
 			uint64_t nArr_dbl,
@@ -4166,7 +4166,7 @@ namespace hemelb
 	/*
 		//------------------------------------------
 		// c. Bulk Streaming indices: dev_NeighInd[19] here refers to either: a) the ACTUAL fluid ID index or b) the hemeLB neighbourIndices which refer to the array Index (Data Address) in f_old and f_new
-		int64_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
+		int32_t dev_NeighInd[19]; // ACTUAL fluid ID index for the neighbours - or streaming Data Address in hemeLB f's memory
 
 		for(int LB_Dir=0; LB_Dir< _NUMVECTORS; LB_Dir++){
 			// If we use the elements in GMem_int64_Neigh - then we access the memory address in fOld or fNew directly (not the fluid id)
@@ -4258,7 +4258,7 @@ namespace hemelb
 				// Including the info for the totalSharedFs (propagate outside of the simulation domain).
 				// (remember the memory layout in hemeLB is based on the site fluid index (Method A), i.e. f0[0], f1[0], f2[0], ..., fq[0] and for the Fluid Index Ind : f0[Ind], f1[Ind], f2[Ind], ..., fq[Ind]
 
-				int64_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
+				int32_t dev_NeighInd = GMem_int64_Neigh[(unsigned long long)LB_Dir * nArr_dbl + Ind]; // Depends on which neigh array is loaded... Read the streaming info here - Here Refers to Data Address NOT THE STREAMING FLUID ID!!!
 
 				// Put the new populations after collision in the GMem_dbl array, implementing the streaming step as well
 				// fNew populations:
