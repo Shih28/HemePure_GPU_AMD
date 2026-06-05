@@ -60,3 +60,9 @@ slurm-*.out
 # ---- OS cruft --------------------------------------------------------------
 .DS_Store
 Thumbs.db
+
+# perf profiling output
+src/prof_*/
+src/prof_*.out
+src/binc_*.out
+*.co
