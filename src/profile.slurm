@@ -22,16 +22,19 @@ CASE="${CASE:-coW-6.4um}"
 ROOT="/home/hpc-i/student10/HemePure_GPU_AMD"
 SRC="$ROOT/src"
 
+export PROF_MODE="${PROF_MODE:-kernel}"
+# counter runs replay kernels -> use the very short (200-step) input
+[ "$PROF_MODE" = counters ] && SUFFIX=cnt || SUFFIX=prof
 case "$CASE" in
-  coW-6.4um) INPUT="$ROOT/cases/coW-6.4um/input_test_prof.xml"; VARIANT=VP ;;
-  Aneurysm)  INPUT="$ROOT/cases/Aneurysm/input_PP_prof.xml";    VARIANT=PP ;;
+  coW-6.4um) INPUT="$ROOT/cases/coW-6.4um/input_test_${SUFFIX}.xml"; VARIANT=VP ;;
+  Aneurysm)  INPUT="$ROOT/cases/Aneurysm/input_PP_${SUFFIX}.xml";    VARIANT=PP ;;
   *) echo "ERROR: unknown CASE '$CASE' (known: coW-6.4um, Aneurysm)"; exit 1 ;;
 esac
 
 EXE="${EXE:-$SRC/build/hemepure_gpu_$VARIANT}"
 OUT="$(dirname "$INPUT")/results_prof_${CASE}_${SLURM_JOB_ID:-manual}"
 export PROF_OUTDIR="$SRC/prof_${CASE}_${SLURM_JOB_ID:-manual}"
-export PROF_MODE="${PROF_MODE:-kernel}"
+export PROF_PMC="${PROF_PMC:-$SRC/pmc_bw.txt}"
 
 # ---- environment -----------------------------------------------------------
 source /etc/profile.d/modules.sh
@@ -57,7 +60,7 @@ echo "============================================================"
 # ---- forward only the env vars that are actually set (clean log) -----------
 FWD=()
 for v in PATH LD_LIBRARY_PATH HIP_PATH HIP_PLATFORM ROCR_VISIBLE_DEVICES \
-         GPU_DEVICE_ORDINAL HIP_VISIBLE_DEVICES PROF_OUTDIR PROF_MODE; do
+         GPU_DEVICE_ORDINAL HIP_VISIBLE_DEVICES PROF_OUTDIR PROF_MODE PROF_PMC; do
   [ -n "${!v+x}" ] && FWD+=(-x "$v")
 done
 

@@ -12,8 +12,9 @@ outdir="${PROF_OUTDIR:-prof_out}/rank${rank}"
 mkdir -p "$outdir"
 
 case "${PROF_MODE:-kernel}" in
-  sys)    flags=(--sys-trace --stats -S) ;;
-  *)      flags=(--kernel-trace --stats -S) ;;
+  counters) flags=(-i "${PROF_PMC:?set PROF_PMC to a pmc input file}") ;;
+  sys)      flags=(--sys-trace --stats -S) ;;
+  *)        flags=(--kernel-trace --stats -S) ;;
 esac
 
 exec rocprofv3 "${flags[@]}" -d "$outdir" -o prof -f csv -- "$@"

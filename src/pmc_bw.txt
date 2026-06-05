@@ -1,4 +1,2 @@
 pmc: FETCH_SIZE WRITE_SIZE
-pmc: GL2C_HIT GL2C_MISS
-pmc: MemUnitBusy MemUnitStalled
-pmc: SQ_INSTS_VMEM_RD SQ_INSTS_VMEM_WR
+pmc: MemUnitBusy MemUnitStalled WriteUnitStalled
