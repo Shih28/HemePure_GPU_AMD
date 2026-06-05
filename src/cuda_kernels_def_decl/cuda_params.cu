@@ -1766,12 +1766,12 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 
 		// Load the distribution functions
 		//f[19] and fEq[19]
-		double dev_ff[19]; //, dev_fEq[19];
-		double nn = 0.0;	// density
-		double momentum_x, momentum_y, momentum_z;
+		float dev_ff[19]; //, dev_fEq[19];
+		float nn = 0.0f;	// density
+		float momentum_x, momentum_y, momentum_z;
 		momentum_x = momentum_y = momentum_z = 0.0;
 
-		double velx, vely, velz;	// Fluid Velocity
+		float velx, vely, velz;	// Fluid Velocity
 
 		//-----------------------------------------------------------------------------------------------------------
 		// 1. Read the fOld_GPU_b distr. functions
@@ -1784,22 +1784,22 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 		}
 
 		for(int direction = 0; direction< _NUMVECTORS; direction++){
-			momentum_x += (double)_CX_19[direction] * dev_ff[direction];
-			momentum_y += (double)_CY_19[direction] * dev_ff[direction];
-			momentum_z += (double)_CZ_19[direction] * dev_ff[direction];
+			momentum_x += (float)_CX_19[direction] * dev_ff[direction];
+			momentum_y += (float)_CY_19[direction] * dev_ff[direction];
+			momentum_z += (float)_CZ_19[direction] * dev_ff[direction];
 		}
 		*/
 
 #pragma unroll 19
 		for(int direction = 0; direction< _NUMVECTORS; direction++){
-			double ff = GMem_dbl_fOld_b[(unsigned long long)direction * nArr_dbl + Ind];
+			float ff = GMem_dbl_fOld_b[(unsigned long long)direction * nArr_dbl + Ind];
 			dev_ff[direction] = ff;
 			nn += ff;
 
 			// Shows a lower number of registers per thread (51) compared to the the explicit method below!!!
-			momentum_x += (double)_CX_19[direction] * ff;
-			momentum_y += (double)_CY_19[direction] * ff;
-			momentum_z += (double)_CZ_19[direction] * ff;
+			momentum_x += (float)_CX_19[direction] * ff;
+			momentum_y += (float)_CY_19[direction] * ff;
+			momentum_z += (float)_CZ_19[direction] * ff;
 		}
 
 		/*
@@ -1818,8 +1818,8 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 		*/
 		//-----------------------------------------------------------------------------------------------------------
 		// c. Calculate equilibrium distr. functions
-		double density_1 = 1.0 / nn;
-		double momentumMagnitudeSquared = momentum_x * momentum_x
+		float density_1 = 1.0f / nn;
+		float momentumMagnitudeSquared = momentum_x * momentum_x
 													+ momentum_y * momentum_y + momentum_z * momentum_z;
 
 		double f_neq[19];
@@ -1827,19 +1827,19 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 #pragma unroll 19
 			for (int i = 0; i < _NUMVECTORS; ++i)
 			{
-				double mom_dot_ei = (double)_CX_19[i] * momentum_x
-												+ (double)_CY_19[i] * momentum_y
-												+ (double)_CZ_19[i] * momentum_z;
+				float mom_dot_ei = (float)_CX_19[i] * momentum_x
+												+ (float)_CY_19[i] * momentum_y
+												+ (float)_CZ_19[i] * momentum_z;
 
 				/*
 						dev_fEq[i] = _EQMWEIGHTS_19[i]
-										* (nn - (3.0 / 2.0) * momentumMagnitudeSquared * density_1
-														+ (9.0 / 2.0) * density_1 * mom_dot_ei * mom_dot_ei + 3.0 * mom_dot_ei);
+										* (nn - (1.5f) * momentumMagnitudeSquared * density_1
+														+ (4.5f) * density_1 * mom_dot_ei * mom_dot_ei + 3.0f * mom_dot_ei);
 			 */
 
-			  double dev_fEq = _EQMWEIGHTS_19[i]
-										* (nn - (3.0 / 2.0) * momentumMagnitudeSquared * density_1
-														+ (9.0 / 2.0) * density_1 * mom_dot_ei * mom_dot_ei + 3.0 * mom_dot_ei);
+			  float dev_fEq = _EQMWEIGHTS_19[i]
+										* (nn - (1.5f) * momentumMagnitudeSquared * density_1
+														+ (4.5f) * density_1 * mom_dot_ei * mom_dot_ei + 3.0f * mom_dot_ei);
 
 				f_neq[i] = dev_ff[i] - dev_fEq;
 				dev_ff[i] += f_neq[i] * dev_minusInvTau;
@@ -1849,19 +1849,19 @@ __global__ void GPU_Check_Coordinates(int64_t *GMem_Coords_iolets,
 			#pragma unroll 19
 			for (int i = 0; i < _NUMVECTORS; ++i)
 			{
-				double mom_dot_ei = (double)_CX_19[i] * momentum_x
-					+ (double)_CY_19[i] * momentum_y
-					+ (double)_CZ_19[i] * momentum_z;
+				float mom_dot_ei = (float)_CX_19[i] * momentum_x
+					+ (float)_CY_19[i] * momentum_y
+					+ (float)_CZ_19[i] * momentum_z;
 
 				/*
 					dev_fEq[i] = _EQMWEIGHTS_19[i]
-						* (nn - (3.0 / 2.0) * momentumMagnitudeSquared * density_1
-						+ (9.0 / 2.0) * density_1 * mom_dot_ei * mom_dot_ei + 3.0 * mom_dot_ei);
+						* (nn - (1.5f) * momentumMagnitudeSquared * density_1
+						+ (4.5f) * density_1 * mom_dot_ei * mom_dot_ei + 3.0f * mom_dot_ei);
 				*/
 
-				double dev_fEq = _EQMWEIGHTS_19[i]
-													* (nn - (3.0 / 2.0) * momentumMagnitudeSquared * density_1
-																	+ (9.0 / 2.0) * density_1 * mom_dot_ei * mom_dot_ei + 3.0 * mom_dot_ei);
+				float dev_fEq = _EQMWEIGHTS_19[i]
+													* (nn - (1.5f) * momentumMagnitudeSquared * density_1
+																	+ (4.5f) * density_1 * mom_dot_ei * mom_dot_ei + 3.0f * mom_dot_ei);
 
 				//f_neq[i] = dev_ff[i] - dev_fEq;
 				dev_ff[i] += (dev_ff[i] - dev_fEq) * dev_minusInvTau;
